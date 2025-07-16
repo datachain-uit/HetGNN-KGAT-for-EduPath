@@ -1,896 +1,1539 @@
 \documentclass{ieeeaccess}
 \usepackage{cite}
 \usepackage{amsmath,amssymb,amsfonts}
-\usepackage{algorithmic}
+\usepackage{url}
+\usepackage{multirow}
+\usepackage{float}
 \usepackage{graphicx}
 \usepackage{textcomp}
+\usepackage{adjustbox}
+\usepackage[normalem]{ulem}
+\useunder{\uline}{\ul}{}
+\usepackage{rotating}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{hyperref}
+
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \begin{document}
 \history{Date of publication xxxx 00, 0000, date of current version xxxx 00, 0000.}
-\doi{10.1109/ACCESS.2017.DOI}
+\doi{10.1109/ACCESS.2023.0322000}
 
-\title{Preparation of Papers for IEEE ACCESS}
+\title{HetGNN-KGAT: Enhancing Personalized Course Recommendation in MOOCs with Knowledge Graph Attention Networks}
 
-\author{\uppercase{First A. Author}\authorrefmark{1}, \IEEEmembership{Fellow, IEEE},
-\uppercase{Second B. Author\authorrefmark{2}, and Third C. Author,
-Jr}.\authorrefmark{3},
-\IEEEmembership{Member, IEEE}}
-\address[1]{National Institute of Standards and 
-Technology, Boulder, CO 80305 USA (e-mail: author@boulder.nist.gov)}
-\address[2]{Department of Physics, Colorado State University, Fort Collins, 
-CO 80523 USA (e-mail: author@lamar.colostate.edu)}
-\address[3]{Electrical Engineering Department, University of Colorado, Boulder, CO 
-80309 USA}
-\tfootnote{This paragraph of the first footnote will contain support 
-information, including sponsor and financial support acknowledgment. For 
-example, ``This work was supported in part by the U.S. Department of 
-Commerce under Grant BS123456.''}
+% author
+\author{
+\uppercase{Thu Nguyen}\authorrefmark{1,3,*},
+\uppercase{Dat Do}\authorrefmark{1,3,*},
+\uppercase{Huong Vi}\authorrefmark{1,3,*},
+\uppercase{Khoa Tan VO}\authorrefmark{1,3},
+\uppercase{Thu-Thuy Ta}\authorrefmark{1,3},
+\uppercase{Mong-Thy Nguyen Thi}\authorrefmark{1,3},
+\uppercase{Phuc Nguyen}\authorrefmark{2.3},
+\uppercase{Hong-Tri Nguyen}\authorrefmark{4},
+\uppercase{Tu-Anh Nguyen-Hoang}\authorrefmark{1,3}
+}
+
+\address[1]{Faculty of Information Science and Engineering, University of Information Technology, Ho Chi Minh City, Vietnam}
+\address[2]{Faculty of Information Systems, University of Economics and Law, Ho Chi Minh City, Vietnam}
+\address[3]{Vietnam National University, Ho Chi Minh City, Vietnam}
+\address[4]{Aalto University, Finland}
+\address[*]{These authors contributed equally}
+\tfootnote{This research was supported by The VNUHCM-University of Information Technology's Scientific Research Support Fund.}
 
 \markboth
-{Author \headeretal: Preparation of Papers for IEEE TRANSACTIONS and JOURNALS}
-{Author \headeretal: Preparation of Papers for IEEE TRANSACTIONS and JOURNALS}
+{Thu Nguyen  \headeretal: HetGNN-KGAT: Knowledge Graph-Aware Course Recommendation in MOOCs}
+{Thu Nguyen  \headeretal: HetGNN-KGAT: Knowledge Graph-Aware Course Recommendation in MOOCs}
 
-\corresp{Corresponding author: First A. Author (e-mail: author@ boulder.nist.gov).}
+\corresp{Corresponding author: Thu Nguyen (e-mail: thunta@uit.edu.vn, n240204@grad.uit.edu.vn) and Hong-Tri Nguyen (e-mail: hong-tri.nguyen@aalto.fi).}
 
 \begin{abstract}
-These instructions give you guidelines for preparing papers for 
-IEEE Access. Use this document as a template if you are 
-using \LaTeX. Otherwise, use this document as an 
-instruction set. The electronic file of your paper will be formatted further 
-at IEEE. Paper titles should be written in uppercase and lowercase letters, 
-not all uppercase. Avoid writing long formulas with subscripts in the title; 
-short formulas that identify the elements are fine (e.g., "Nd--Fe--B"). Do 
-not write ``(Invited)'' in the title. Full names of authors are preferred in 
-the author field, but are not required. Put a space between authors' 
-initials. The abstract must be a concise yet comprehensive reflection of 
-what is in your article. In particular, the abstract must be self-contained, 
-without abbreviations, footnotes, or references. It should be a microcosm of 
-the full article. The abstract must be between 150--250 words. Be sure that 
-you adhere to these limits; otherwise, you will need to edit your abstract 
-accordingly. The abstract must be written as one paragraph, and should not 
-contain displayed mathematical equations or tabular material. The abstract 
-should include three or four different keywords or phrases, as this will 
-help readers to find it. It is important to avoid over-repetition of such 
-phrases as this can result in a page being rejected by search engines. 
-Ensure that your abstract reads well and is grammatically correct.
+The rise of Massive Open Online Courses (MOOCs) has expanded educational access, but personalized course recommendation is challenged by sparse interaction data and complex learner-item relationships. This paper proposes HetGNN-KGAT, a framework integrating Heterogeneous Graph Neural Networks (HetGNN) for link prediction in a heterogeneous information network (HIN) and Knowledge Graph Attention Networks (KGAT) for recommendation enhancement. HetGNN outperforms traditional methods Listwise Deletion, Statistical Imputation, and ML-based Imputation by achieving complete and consistent data quality, while KGAT leverages relational structures. Evaluated on the MOOCCubeX dataset, HetGNN-KGAT shows improvements of up to 23.55\% in MAP, 11.37\% in F1-score, and 27.70\% in NDCG compared to baselines CBF, DeepFM, BPRMF, UPGPR, and KGAT in simulated scenarios. In real-world scenarios, enhancements reach up to 7.82\% in MAP, 3.73\% in F1-score, and 9.24\% in NDCG. The approach suggests a practical benefit in managing data sparsity and offers insights for advancing adaptive educational technologies.
 \end{abstract}
 
 \begin{keywords}
-Enter key words or phrases in alphabetical 
-order, separated by commas. For a list of suggested keywords, send a blank 
-e-mail to keywords@ieee.org or visit \underline
-{http://www.ieee.org/organizations/pubs/ani\_prod/keywrd98.txt}
+Educational technology, Heterogeneous graphs, Knowledge graphs, MOOC recommendation, Personalized learning.
 \end{keywords}
 
-\titlepgskip=-15pt
+\titlepgskip=-21pt
 
 \maketitle
 
 \section{Introduction}
 \label{sec:introduction}
-\PARstart{T}{his} document is a template for \LaTeX. If you are 
-reading a paper or PDF version of this document, please download the 
-electronic file, trans\_jour.tex, from the IEEE Web site at \underline
-{http://ieeeauthorcenter.ieee.org/create-your-ieee-article/}\break\underline{use-authoring-tools-and-ieee-article-templates/ieee-article-}\break\underline{templates/} so you can use it to prepare your manuscript. If 
-you would prefer to use LaTeX, download IEEE's LaTeX style and sample files 
-from the same Web page. You can also explore using the Overleaf editor at 
-\underline
-{https://www.overleaf.com/blog/278-how-to-use-overleaf-}\break\underline{with-ieee-collabratec-your-quick-guide-to-getting-started}\break\underline{\#.xsVp6tpPkrKM9}
+MOOCs have gained prominence in education over the past decade, providing millions of learners worldwide with access to diverse knowledge irrespective of spatial or temporal constraints. Platforms such as XuetangX, Coursera, and edX offer courses spanning foundational sciences to specialized skills, catering to a wide range of learners \cite{qaffas2020towards}. This accessibility supports lifelong learning and skill development in the digital era, marking a notable presence in modern education. However, the growth of MOOCs presents challenges, including sparse interaction data and low completion rates, typically ranging from 5-15\% \cite{jordan2014initial_trend_mooc}. These issues complicate course selection, reducing learner engagement and highlighting the need for effective recommendation systems.
 
-If your paper is intended for a conference, please contact your conference 
-editor concerning acceptable word processor formats for your particular 
-conference. 
+% Discussing challenges in personalized recommendation
+Personalized course recommendation in MOOCs is limited by data sparsity, cold-start problems, and the complex relationships among learners, courses, videos, and forums. Traditional methods like Collaborative Filtering (CF) and Content-Based Filtering (CBF) face difficulties with incomplete data and fail to fully capture relational structures \cite{mustafeez2024comprehensive}. Recent studies indicate that graph-based approaches, such as those using knowledge graphs, may address some of these limitations \cite{wang2019kgat}. However, these approaches often struggle with dynamic optimization and the integration of heterogeneous data, necessitating advanced methods to model complex interactions and improve recommendation accuracy.
 
-IEEE will do the final formatting of your paper. If your paper is intended 
-for a conference, please observe the conference page limits. 
+% Bridging to data imputation methods
+To tackle the challenge of data sparsity, a critical barrier to effective recommendation systems, various imputation methods have been explored in the context of MOOCs. Techniques such as Listwise Deletion, Statistical Imputation, and Machine Learning-based Imputation (e.g., KNN) have been employed to address missing data. Listwise Deletion \cite{Rubin2019statistical_analysis_missing_data} discards incomplete records, which may lead to substantial data loss. Statistical Imputation \cite{van2011mice}, such as mean or mode substitution, relies on simplistic assumptions and can introduce bias. Machine Learning-based methods, like KNN \cite{troyanskaya2001missingDNA}, utilize data patterns but may struggle with complex, nonlinear relationships in heterogeneous MOOC data. These limitations underscore the need for a robust framework that not only addresses data sparsity but also leverages the relational structures inherent in MOOC ecosystems to enhance recommendation performance.
 
-\subsection{Abbreviations and Acronyms}
-Define abbreviations and acronyms the first time they are used in the text, 
-even after they have already been defined in the abstract. Abbreviations 
-such as IEEE, SI, ac, and dc do not have to be defined. Abbreviations that 
-incorporate periods should not have spaces: write ``C.N.R.S.,'' not ``C. N. 
-R. S.'' Do not use abbreviations in the title unless they are unavoidable 
-(for example, ``IEEE'' in the title of this article).
+% Introducing the proposed framework
+The proposed HetGNN-KGAT framework provides a structured approach to enhancing recommendation systems in MOOC platforms by integrating HetGNN and KGAT. This methodology leverages the relational structures and node content of HetGNN to address data sparsity through effective link prediction and data imputation, while KGAT captures complex learner-course interactions to improve recommendation accuracy. The workflow of the framework, illustrated in the overview of the HetGNN-KGAT method (Figure \ref{fig:overview_hetgnn_kgat_method}), consists of four main stages: Data collection, Preprocessing (with a focus on HetGNN-based imputation), Recommendation model (utilizing the KGAT algorithm as the central technique), and Performance analysis. Based on graph-based learning principles, this process employs HetGNN to handle data imputation and KGAT to generate personalized recommendations, overcoming the limitations of traditional imputation and recommendation methods. A detailed examination of these components, including their theoretical foundations, implementation procedures, and practical steps, is provided in the subsequent theoretical background section to facilitate understanding and application of the proposed framework.
 
-\subsection{Other Recommendations}
-Use one space after periods and colons. Hyphenate complex modifiers: 
-``zero-field-cooled magnetization.'' Avoid dangling participles, such as, 
-``Using \eqref{eq}, the potential was calculated.'' [It is not clear who or what 
-used \eqref{eq}.] Write instead, ``The potential was calculated by using \eqref{eq},'' or 
-``Using \eqref{eq}, we calculated the potential.''
+\begin{figure*}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{imgs/overview.png}
+\caption{Overview of the HetGNN-KGAT method}
+\label{fig:overview_hetgnn_kgat_method}
+\end{figure*}
 
-Use a zero before decimal points: ``0.25,'' not ``.25.'' Use 
-``cm$^{3}$,'' not ``cc.'' Indicate sample dimensions as ``0.1 cm 
-$\times $ 0.2 cm,'' not ``0.1 $\times $ 0.2 cm$^{2}$.'' The 
-abbreviation for ``seconds'' is ``s,'' not ``sec.'' Use 
-``Wb/m$^{2}$'' or ``webers per square meter,'' not 
-``webers/m$^{2}$.'' When expressing a range of values, write ``7 to 
-9'' or ``7--9,'' not ``7$\sim $9.''
+% Presenting evaluation and contributions
+Evaluated on the MOOCCubeX dataset, HetGNN-KGAT shows potential improvements in managing sparse data, offering a basis for personalized learning systems. Experimental results demonstrate that HetGNN-KGAT outperforms baseline methods in both simulated and real-world scenarios. On the V5 (HetGNN Imputation) dataset, the proposed method achieves a MAP@10 improvement of 11.85\% to 23.55\% over baselines in simulated settings and 2.83\% to 7.82\% in real-world settings. For V4, V3, and V2 datasets, HetGNN-KGAT consistently surpasses baselines, with improvements ranging from 8.95\% to 20.14\% (simulated) and 2.67\% to 7.92\% (real-world). These results highlight the framework’s ability to enhance data quality and recommendation precision, supporting scalable and adaptive educational systems. Key contributions include an imputation method that performs better than traditional techniques and a recommendation strategy that supports scalability, contributing to future developments in adaptive educational technologies.
 
-A parenthetical statement at the end of a sentence is punctuated outside of 
-the closing parenthesis (like this). (A parenthetical sentence is punctuated 
-within the parentheses.) In American English, periods and commas are within 
-quotation marks, like ``this period.'' Other punctuation is ``outside''! 
-Avoid contractions; for example, write ``do not'' instead of ``don't.'' The 
-serial comma is preferred: ``A, B, and C'' instead of ``A, B and C.''
 
-If you wish, you may write in the first person singular or plural and use 
-the active voice (``I observed that $\ldots$'' or ``We observed that $\ldots$'' 
-instead of ``It was observed that $\ldots$''). Remember to check spelling. If 
-your native language is not English, please get a native English-speaking 
-colleague to carefully proofread your paper.
+The paper is structured as follows. Section~\ref{sec:related_work} reviews related work on recommendation systems, heterogeneous information networks, and MOOC data imputation. Section~\ref{sec:background} presents the theoretical foundations of recommendation systems, graph-based data representation, HetGNN, and KGAT. Section~\ref{sec:proposed_method} details the proposed HetGNN-KGAT framework, including the MOOCCubeX dataset, data analysis, and integration of HetGNN and KGAT. Section~\ref{sec:experiments} evaluates data quality and recommendation performance in simulated and real-world scenarios. Section~\ref{sec:discussion} discusses the method's strengths, limitations, and future directions. Section~\ref{sec:conclusion} summarizes key contributions and implications for personalized learning.
 
-Try not to use too many typefaces in the same article. You're writing
-scholarly papers, not ransom notes. Also please remember that MathJax
-can't handle really weird typefaces.
+\section{Related Work}
+\label{sec:related_work}
 
-\subsection{Equations}
-Number equations consecutively with equation numbers in parentheses flush 
-with the right margin, as in \eqref{eq}. To make your equations more 
-compact, you may use the solidus (~/~), the exp function, or appropriate 
-exponents. Use parentheses to avoid ambiguities in denominators. Punctuate 
-equations when they are part of a sentence, as in
-\begin{equation}E=mc^2.\label{eq}\end{equation}
 
-Be sure that the symbols in your equation have been defined before the 
-equation appears or immediately following. Italicize symbols ($T$ might refer 
-to temperature, but T is the unit tesla). Refer to ``\eqref{eq},'' not ``Eq. \eqref{eq}'' 
-or ``equation \eqref{eq},'' except at the beginning of a sentence: ``Equation \eqref{eq} 
-is $\ldots$ .''
 
-\subsection{\LaTeX-Specific Advice}
+\subsection{Missing Data and Imputation Methods}
 
-Please use ``soft'' (e.g., \verb|\eqref{Eq}|) cross references instead
-of ``hard'' references (e.g., \verb|(1)|). That will make it possible
-to combine sections, add equations, or change the order of figures or
-citations without having to go through the file line by line.
+Handling missing data is essential in MOOCs due to the inherently sparse nature of learner interaction datasets. Various imputation techniques have been explored to improve data quality and mitigate the impact of missing information.
 
-Please don't use the \verb|{eqnarray}| equation environment. Use
-\verb|{align}| or \verb|{IEEEeqnarray}| instead. The \verb|{eqnarray}|
-environment leaves unsightly spaces around relation symbols.
+According to the MICE framework \cite{van2011mice}, significant limitations of traditional imputation methods have been highlighted. Specifically, listwise deletion, which removes records with missing values, has been criticized for severely reducing sample size, leading to substantial information loss and diminished statistical power. Meanwhile, simple single imputation methods, such as mean or median imputation, fail to account for the uncertainty associated with missing values, resulting in overly confident but potentially biased statistical estimates.
 
-Please note that the \verb|{subequations}| environment in {\LaTeX}
-will increment the main equation counter even when there are no
-equation numbers displayed. If you forget that, you might write an
-article in which the equation numbers skip from (17) to (20), causing
-the copy editors to wonder if you've discovered a new method of
-counting.
+Troyanskaya et al. (2001) \cite{troyanskaya2001missingDNA} applied machine learning-based approaches, including k-nearest neighbors (k-NN) and Singular Value Decomposition (SVD), to impute missing values in DNA microarray datasets. These methods leverage the similarity among genes or samples to estimate missing entries, producing stable results even under high missing rates. The k-NN approach offers flexibility and is well-suited for multi-dimensional biological data; however, its performance tends to degrade when handling highly nonlinear and complex relationships.
 
-{\BibTeX} does not work by magic. It doesn't get the bibliographic
-data from thin air but from .bib files. If you use {\BibTeX} to produce a
-bibliography you must send the .bib files. 
+More recently, Graph Neural Networks (GNNs), particularly the HetGNN, have shown outstanding performance in link prediction and missing data imputation tasks on HIN \cite{zhang2019hetgnn}. HetGNN effectively aggregates node content and learns rich, multi-type neighborhood representations, enabling the simultaneous modeling of various entity and relation types. This capability makes HetGNN especially suitable for large-scale and complex datasets like MOOCCubeX, where entities such as learners, courses, videos, and concepts are interconnected through multi-relational structures \cite{yu2021mooccubex}.
 
-{\LaTeX} can't read your mind. If you assign the same label to a
-subsubsection and a table, you might find that Table I has been cross
-referenced as Table IV-B3. 
+The strong link prediction ability of HetGNN offers a promising solution for addressing the pervasive issue of missing data in MOOC systems \cite{kizilcec2015attrition_missing_MOOC}. Additionally, HetGNN’s flexible architecture supports computational optimization, facilitating its deployment in large-scale online education environments. These advantages provide a strong rationale for integrating HetGNN into the proposed HetGNN-KGAT framework, aiming to further enhance input data quality and support more effective personalized course recommendations \cite{zhang2019hetgnn, wang2019kgat}.
 
-{\LaTeX} does not have precognitive abilities. If you put a
-\verb|\label| command before the command that updates the counter it's
-supposed to be using, the label will pick up the last counter to be
-cross referenced instead. In particular, a \verb|\label| command
-should not go before the caption of a figure or a table.
+\subsection{Recommendation System} 
 
-Do not use \verb|\nonumber| inside the \verb|{array}| environment. It
-will not stop equation numbers inside \verb|{array}| (there won't be
-any anyway) and it might stop a wanted equation number in the
-surrounding equation.
+To help users select suitable content, recommendation systems have been developed using various approaches. Studies are categorized into collaborative filtering, content-based filtering, hybrid, and graph-based methods, each tackling specific challenges in fields like MOOCs.
 
-\section{Units}
-Use either SI (MKS) or CGS as primary units. (SI units are strongly 
-encouraged.) English units may be used as secondary units (in parentheses). 
-This applies to papers in data storage. For example, write ``15 
-Gb/cm$^{2}$ (100 Gb/in$^{2})$.'' An exception is when 
-English units are used as identifiers in trade, such as ``3\textonehalf-in 
-disk drive.'' Avoid combining SI and CGS units, such as current in amperes 
-and magnetic field in oersteds. This often leads to confusion because 
-equations do not balance dimensionally. If you must use mixed units, clearly 
-state the units for each quantity in an equation.
+\subsubsection{Collaborative Filtering}
 
-The SI unit for magnetic field strength $H$ is A/m. However, if you wish to use 
-units of T, either refer to magnetic flux density $B$ or magnetic field 
-strength symbolized as $\mu _{0}H$. Use the center dot to separate 
-compound units, e.g., ``A$\cdot $m$^{2}$.''
+CF is a key recommendation system technique that leverages user-course interaction data to suggest courses. It includes User-based CF, recommending courses based on similar users' preferences, and Item-based CF, suggesting courses similar to those previously engaged by a user. Despite its accuracy, CF faces cold-start issues with sparse data, common in MOOCs \cite{aggarwal2016recommender}. Bayesian Personalized Ranking (BPR) \cite{rendle2012bprmf} enhances ranking accuracy by 20\% using implicit feedback but struggles with extreme data sparsity \cite{kizilcec2015attrition_missing_MOOC}. Nassar et al.'s (2020) deep neural network-based multi-criteria CF model \cite{nassar2020novel} reduces Mean Absolute Error by 15\% by capturing user behavior, yet it also faces cold-start challenges in sparse MOOC datasets \cite{jordan2014initial_trend_mooc}. CATA++ \cite{alfarhood2020cata++} improves accuracy by 12\% and interpretability using a dual-attention autoencoder but is less scalable for large, heterogeneous MOOC environments \cite{yu2021mooccubex}.
 
-\section{Some Common Mistakes}
-The word ``data'' is plural, not singular. The subscript for the 
-permeability of vacuum $\mu _{0}$ is zero, not a lowercase letter 
-``o.'' The term for residual magnetization is ``remanence''; the adjective 
-is ``remanent''; do not write ``remnance'' or ``remnant.'' Use the word 
-``micrometer'' instead of ``micron.'' A graph within a graph is an 
-``inset,'' not an ``insert.'' The word ``alternatively'' is preferred to the 
-word ``alternately'' (unless you really mean something that alternates). Use 
-the word ``whereas'' instead of ``while'' (unless you are referring to 
-simultaneous events). Do not use the word ``essentially'' to mean 
-``approximately'' or ``effectively.'' Do not use the word ``issue'' as a 
-euphemism for ``problem.'' When compositions are not specified, separate 
-chemical symbols by en-dashes; for example, ``NiMn'' indicates the 
-intermetallic compound Ni$_{0.5}$Mn$_{0.5}$ whereas 
-``Ni--Mn'' indicates an alloy of some composition 
-Ni$_{x}$Mn$_{1-x}$.
+\subsubsection{Content-Based Filtering}
 
-\Figure[t!](topskip=0pt, botskip=0pt, midskip=0pt){fig1.png}
-{Magnetization as a function of applied field.
-It is good practice to explain the significance of the figure in the caption.\label{fig1}}
+CBF recommends courses by analyzing features of courses and learner profiles, suggesting items with similar characteristics to those a user has enrolled in. Unlike collaborative filtering, CBF is less impacted by sparse data but may limit content discovery due to its reliance on existing user preferences \cite{aggarwal2016recommender}. Science Concierge \cite{achakulvisut2016science}, developed by Achakulvisut et al. (2016), uses Latent Semantic Analysis (LSA) and the Rocchio algorithm, validated on 14,718 papers from the Neuroscience 2015 conference. It outperforms traditional keyword-based methods, offering robust performance in content-rich environments with known user preferences. However, its dependence on existing preferences can lead to repetitive recommendations, failing to meet diverse MOOC learner needs. Additionally, it struggles to capture complex course-learner relationships critical for MOOC platforms \cite{qaffas2020towards, mustafeez2024comprehensive}.
 
-Be aware of the different meanings of the homophones ``affect'' (usually a 
-verb) and ``effect'' (usually a noun), ``complement'' and ``compliment,'' 
-``discreet'' and ``discrete,'' ``principal'' (e.g., ``principal 
-investigator'') and ``principle'' (e.g., ``principle of measurement''). Do 
-not confuse ``imply'' and ``infer.'' 
+\subsubsection{Hybrid Methods}
+Hybrid Recommender Systems combine multiple recommendation techniques to enhance performance, leveraging the strengths of CF and CBF while reducing their individual weaknesses. Common approaches include Weighted Hybrid, which merges scores from different models, Switching Hybrid, which selects the appropriate model per case, and Feature Combination, which uses the output of one model as input for another~\cite{aggarwal2016recommender}. DeepFM~\cite{guo2017deepfm}, a model that integrates Factorization Machines (FM) with deep neural networks (DNNs) for click-through rate (CTR) prediction, was evaluated on advertising datasets and achieved a performance improvement of approximately 15\% compared to traditional baseline methods. DeepFM is capable of jointly learning both low-order (linear) and high-order (nonlinear) feature interactions without requiring manual feature engineering. Despite its effectiveness, the model's performance tends to degrade when dealing with missing or highly complex data structures, such as the irregular and diverse learning behaviors commonly observed in MOOCs~\cite{yu2021mooccubex}. In the context of MOOCs, Li et al. (2023) proposed the Meta Hierarchical Reinforced Ranking (MHRR) model, which achieved over 10\% higher accuracy in course ranking tasks~\cite{li2023mhrr}. While MHRR effectively combines meta-learning and reinforcement signals to optimize hierarchical feedback, its performance declines in real-world MOOC settings due to sparse and noisy interaction data, limiting its scalability and generalizability.
 
-Prefixes such as ``non,'' ``sub,'' ``micro,'' ``multi,'' and ``ultra'' are 
-not independent words; they should be joined to the words they modify, 
-usually without a hyphen. There is no period after the ``et'' in the Latin 
-abbreviation ``\emph{et al.}'' (it is also italicized). The abbreviation ``i.e.,'' means 
-``that is,'' and the abbreviation ``e.g.,'' means ``for example'' (these 
-abbreviations are not italicized).
+\subsubsection{Graph-Based Recommendation Approaches}
+Graph-based models improve MOOC recommendations by capturing complex relationships. Xia et al. (2025) proposed MixRec, using heterogeneous graphs to achieve 60\% accuracy on social datasets, though it struggles with missing data in MOOCs~\cite{xia2025mixrec, kizilcec2015attrition_missing_MOOC}. Nguyen et al. (2024) introduced H-BERT4Rec, combining Heterogeneous Information Networks (HIN) with BERT4Rec for sequential recommendations, achieving 55.04\% accuracy on MOOCCubeX by modeling learner behaviors and multi-relational structures~\cite{nguyen2024hbert4rec, shi2018heterogeneous}. Despite high computational costs and challenges with sparse data, it excels in context-aware personalization. Wang et al. (2019) developed KGAT, integrating collaborative filtering with knowledge graphs, achieving 18\% higher accuracy on Amazon datasets but facing performance issues with sparse MOOC data~\cite{wang2019kgat, yu2021mooccubex}. These insights inform the proposed HetGNN-KGAT framework, which combines heterogeneous graph neural networks and knowledge graph attention to address data sparsity and enhance personalization~\cite{zhang2019hetgnn, wang2019kgat}. Frej et al. (2024) introduced UPGPR, integrating HIN with reinforcement learning to create interpretable learning paths in MOOCs~\cite{frej2024upgpr}. Tested on the MOOCCube dataset, UPGPR leverages HIN to represent diverse relationships and uses reinforcement learning for real-time sequential recommendations, enhancing both personalization and explainability. However, its scalability and performance under sparse MOOC data conditions require further exploration~\cite{kizilcec2015attrition_missing_MOOC}.
 
-A general IEEE styleguide is available at \underline{http://www.ieee.org/}\break\underline{authortools}.
+\subsection{Heterogeneous Information Networks in Recommender Systems}
 
-\section{Guidelines for Graphics Preparation and Submission}
-\label{sec:guidelines}
+To effectively model complex relationships, HIN have been applied in recommender systems. Shi et al. (2018) introduced a HIN embedding approach that utilizes meta-paths, such as "user → item → user", to enhance recommendation performance on the Amazon dataset \cite{shi2018heterogeneous}. This method outperformed traditional homogeneous models by exploiting multi-dimensional relationships among entities. The key advantage of HIN lies in its ability to represent latent connections between different types of entities, making it particularly suitable for MOOC datasets, which typically involve diverse nodes such as learners, courses, and videos.
 
-\subsection{Types of Graphics}
-The following list outlines the different types of graphics published in 
-IEEE journals. They are categorized based on their construction, and use of 
-color/shades of gray:
+However, a major limitation of HIN-based methods is their reliance on manually designed meta-paths, which require substantial domain expertise and may not generalize well across datasets. Moreover, their performance tends to degrade when dealing with large-scale datasets or missing data, as commonly observed in MOOCCubeX \cite{yu2021mooccubex}. These challenges highlight the necessity of integrating HIN with other advanced techniques to fully exploit its potential in MOOC recommendation scenarios.
 
-\subsubsection{Color/Grayscale figures}
-{Figures that are meant to appear in color, or shades of black/gray. Such 
-figures may include photographs, illustrations, multicolor graphs, and 
-flowcharts.}
+\section{Theoretical Background}
+\label{sec:background}
 
-\subsubsection{Line Art figures}
-{Figures that are composed of only black lines and shapes. These figures 
-should have no shades or half-tones of gray, only black and white.}
+\subsection{Graph-Based Data Representation}
 
-\subsubsection{Author photos}
-{Head and shoulders shots of authors that appear at the end of our papers. }
+Traditional machine learnings  do not clearly reflect the relationships between objects which is an essential factor in MOOCs, while graph data, where entities are represented as nodes or vertices connected through relationships or edges, allows each node to carry a feature vector and each edge to represent a specific type of relationship between two entities. In the context of MOOCs, graphs enable the modeling of various relationships, such as learners enrolling in courses, courses belonging to specific topics, courses including lectures, learners viewing or completing lectures, and interactions between learners through forums, study groups, or similar platforms. The multidimensional nature and multi-entity characteristics of MOOC data highlight the natural suitability of graph representation, allowing recommendation systems to leverage richer contextual information beyond mere interaction history.
 
-\subsubsection{Tables}
-{Data charts which are typically black and white, but sometimes include 
-color.}
-
-\begin{table}
-\caption{Units for Magnetic Properties}
-\label{table}
-\setlength{\tabcolsep}{3pt}
-\begin{tabular}{|p{25pt}|p{75pt}|p{115pt}|}
-\hline
-Symbol& 
-Quantity& 
-Conversion from Gaussian and \par CGS EMU to SI $^{\mathrm{a}}$ \\
-\hline
-$\Phi $& 
-magnetic flux& 
-1 Mx $\to  10^{-8}$ Wb $= 10^{-8}$ V$\cdot $s \\
-$B$& 
-magnetic flux density, \par magnetic induction& 
-1 G $\to  10^{-4}$ T $= 10^{-4}$ Wb/m$^{2}$ \\
-$H$& 
-magnetic field strength& 
-1 Oe $\to  10^{3}/(4\pi )$ A/m \\
-$m$& 
-magnetic moment& 
-1 erg/G $=$ 1 emu \par $\to 10^{-3}$ A$\cdot $m$^{2} = 10^{-3}$ J/T \\
-$M$& 
-magnetization& 
-1 erg/(G$\cdot $cm$^{3}) =$ 1 emu/cm$^{3}$ \par $\to 10^{3}$ A/m \\
-4$\pi M$& 
-magnetization& 
-1 G $\to  10^{3}/(4\pi )$ A/m \\
-$\sigma $& 
-specific magnetization& 
-1 erg/(G$\cdot $g) $=$ 1 emu/g $\to $ 1 A$\cdot $m$^{2}$/kg \\
-$j$& 
-magnetic dipole \par moment& 
-1 erg/G $=$ 1 emu \par $\to 4\pi \times  10^{-10}$ Wb$\cdot $m \\
-$J$& 
-magnetic polarization& 
-1 erg/(G$\cdot $cm$^{3}) =$ 1 emu/cm$^{3}$ \par $\to 4\pi \times  10^{-4}$ T \\
-$\chi , \kappa $& 
-susceptibility& 
-1 $\to  4\pi $ \\
-$\chi_{\rho }$& 
-mass susceptibility& 
-1 cm$^{3}$/g $\to  4\pi \times  10^{-3}$ m$^{3}$/kg \\
-$\mu $& 
-permeability& 
-1 $\to  4\pi \times  10^{-7}$ H/m \par $= 4\pi \times  10^{-7}$ Wb/(A$\cdot $m) \\
-$\mu_{r}$& 
-relative permeability& 
-$\mu \to \mu_{r}$ \\
-$w, W$& 
-energy density& 
-1 erg/cm$^{3} \to  10^{-1}$ J/m$^{3}$ \\
-$N, D$& 
-demagnetizing factor& 
-1 $\to  1/(4\pi )$ \\
-\hline
-\multicolumn{3}{p{251pt}}{Vertical lines are optional in tables. Statements that serve as captions for 
-the entire table do not need footnote letters. }\\
-\multicolumn{3}{p{251pt}}{$^{\mathrm{a}}$Gaussian units are the same as cg emu for magnetostatics; Mx 
-$=$ maxwell, G $=$ gauss, Oe $=$ oersted; Wb $=$ weber, V $=$ volt, s $=$ 
-second, T $=$ tesla, m $=$ meter, A $=$ ampere, J $=$ joule, kg $=$ 
-kilogram, H $=$ henry.}
-\end{tabular}
-\label{tab1}
-\end{table}
-
-\subsection{Multipart figures}
-Figures compiled of more than one sub-figure presented side-by-side, or 
-stacked. If a multipart figure is made up of multiple figure
-types (one part is lineart, and another is grayscale or color) the figure 
-should meet the stricter guidelines.
-
-\subsection{File Formats For Graphics}\label{formats}
-Format and save your graphics using a suitable graphics processing program 
-that will allow you to create the images as PostScript (PS), Encapsulated 
-PostScript (.EPS), Tagged Image File Format (.TIFF), Portable Document 
-Format (.PDF), Portable Network Graphics (.PNG), or Metapost (.MPS), sizes them, and adjusts 
-the resolution settings. When 
-submitting your final paper, your graphics should all be submitted 
-individually in one of these formats along with the manuscript.
-
-\subsection{Sizing of Graphics}
-Most charts, graphs, and tables are one column wide (3.5 inches/88 
-millimeters/21 picas) or page wide (7.16 inches/181 millimeters/43 
-picas). The maximum depth a graphic can be is 8.5 inches (216 millimeters/54
-picas). When choosing the depth of a graphic, please allow space for a 
-caption. Figures can be sized between column and page widths if the author 
-chooses, however it is recommended that figures are not sized less than 
-column width unless when necessary. 
-
-There is currently one publication with column measurements that do not 
-coincide with those listed above. Proceedings of the IEEE has a column 
-measurement of 3.25 inches (82.5 millimeters/19.5 picas). 
-
-The final printed size of author photographs is exactly
-1 inch wide by 1.25 inches tall (25.4 millimeters$\,\times\,$31.75 millimeters/6 
-picas$\,\times\,$7.5 picas). Author photos printed in editorials measure 1.59 inches 
-wide by 2 inches tall (40 millimeters$\,\times\,$50 millimeters/9.5 picas$\,\times\,$12 
-picas).
-
-\subsection{Resolution }
-The proper resolution of your figures will depend on the type of figure it 
-is as defined in the ``Types of Figures'' section. Author photographs, 
-color, and grayscale figures should be at least 300dpi. Line art, including 
-tables should be a minimum of 600dpi.
-
-\subsection{Vector Art}
-In order to preserve the figures' integrity across multiple computer 
-platforms, we accept files in the following formats: .EPS/.PDF/.PS. All 
-fonts must be embedded or text converted to outlines in order to achieve the 
-best-quality results.
-
-\subsection{Color Space}
-The term color space refers to the entire sum of colors that can be 
-represented within the said medium. For our purposes, the three main color 
-spaces are Grayscale, RGB (red/green/blue) and CMYK 
-(cyan/magenta/yellow/black). RGB is generally used with on-screen graphics, 
-whereas CMYK is used for printing purposes.
-
-All color figures should be generated in RGB or CMYK color space. Grayscale 
-images should be submitted in Grayscale color space. Line art may be 
-provided in grayscale OR bitmap colorspace. Note that ``bitmap colorspace'' 
-and ``bitmap file format'' are not the same thing. When bitmap color space 
-is selected, .TIF/.TIFF/.PNG are the recommended file formats.
-
-\subsection{Accepted Fonts Within Figures}
-When preparing your graphics IEEE suggests that you use of one of the 
-following Open Type fonts: Times New Roman, Helvetica, Arial, Cambria, and 
-Symbol. If you are supplying EPS, PS, or PDF files all fonts must be 
-embedded. Some fonts may only be native to your operating system; without 
-the fonts embedded, parts of the graphic may be distorted or missing.
-
-A safe option when finalizing your figures is to strip out the fonts before 
-you save the files, creating ``outline'' type. This converts fonts to 
-artwork what will appear uniformly on any screen.
-
-\subsection{Using Labels Within Figures}
-
-\subsubsection{Figure Axis labels }
-Figure axis labels are often a source of confusion. Use words rather than 
-symbols. As an example, write the quantity ``Magnetization,'' or 
-``Magnetization M,'' not just ``M.'' Put units in parentheses. Do not label 
-axes only with units. As in Fig. 1, for example, write ``Magnetization 
-(A/m)'' or ``Magnetization (A$\cdot$m$^{-1}$),'' not just ``A/m.'' Do not label axes with a ratio of quantities and 
-units. For example, write ``Temperature (K),'' not ``Temperature/K.'' 
-
-Multipliers can be especially confusing. Write ``Magnetization (kA/m)'' or 
-``Magnetization (10$^{3}$ A/m).'' Do not write ``Magnetization 
-(A/m)$\,\times\,$1000'' because the reader would not know whether the top 
-axis label in Fig. 1 meant 16000 A/m or 0.016 A/m. Figure labels should be 
-legible, approximately 8 to 10 point type.
-
-\subsubsection{Subfigure Labels in Multipart Figures and Tables}
-Multipart figures should be combined and labeled before final submission. 
-Labels should appear centered below each subfigure in 8 point Times New 
-Roman font in the format of (a) (b) (c). 
-
-\subsection{File Naming}
-Figures (line artwork or photographs) should be named starting with the 
-first 5 letters of the author's last name. The next characters in the 
-filename should be the number that represents the sequential 
-location of this image in your article. For example, in author 
-``Anderson's'' paper, the first three figures would be named ander1.tif, 
-ander2.tif, and ander3.ps.
-
-Tables should contain only the body of the table (not the caption) and 
-should be named similarly to figures, except that `.t' is inserted 
-in-between the author's name and the table number. For example, author 
-Anderson's first three tables would be named ander.t1.tif, ander.t2.ps, 
-ander.t3.eps.
-
-Author photographs should be named using the first five characters of the 
-pictured author's last name. For example, four author photographs for a 
-paper may be named: oppen.ps, moshc.tif, chen.eps, and duran.pdf.
-
-If two authors or more have the same last name, their first initial(s) can 
-be substituted for the fifth, fourth, third$\ldots$ letters of their surname 
-until the degree where there is differentiation. For example, two authors 
-Michael and Monica Oppenheimer's photos would be named oppmi.tif, and 
-oppmo.eps.
-
-\subsection{Referencing a Figure or Table Within Your Paper}
-When referencing your figures and tables within your paper, use the 
-abbreviation ``Fig.'' even at the beginning of a sentence. Do not abbreviate 
-``Table.'' Tables should be numbered with Roman Numerals.
-
-\subsection{Checking Your Figures: The IEEE Graphics Analyzer}
-The IEEE Graphics Analyzer enables authors to pre-screen their graphics for 
-compliance with IEEE Access standards before submission. 
-The online tool, located at
-\underline{http://graphicsqc.ieee.org/}, allows authors to 
-upload their graphics in order to check that each file is the correct file 
-format, resolution, size and colorspace; that no fonts are missing or 
-corrupt; that figures are not compiled in layers or have transparency, and 
-that they are named according to the IEEE Access naming 
-convention. At the end of this automated process, authors are provided with 
-a detailed report on each graphic within the web applet, as well as by 
-email.
-
-For more information on using the Graphics Analyzer or any other graphics 
-related topic, contact the IEEE Graphics Help Desk by e-mail at 
-graphics@ieee.org.
-
-\subsection{Submitting Your Graphics}
-Because IEEE will do the final formatting of your paper,
-you do not need to position figures and tables at the top and bottom of each 
-column. In fact, all figures, figure captions, and tables can be placed at 
-the end of your paper. In addition to, or even in lieu of submitting figures 
-within your final manuscript, figures should be submitted individually, 
-separate from the manuscript in one of the file formats listed above in 
-Section \ref{formats}. Place figure captions below the figures; place table titles 
-above the tables. Please do not include captions as part of the figures, or 
-put them in ``text boxes'' linked to the figures. Also, do not place borders 
-around the outside of your figures.
-
-\subsection{Color Processing/Printing in IEEE Journals}
-All IEEE Transactions, Journals, and Letters allow an author to publish 
-color figures on IEEE Xplore\textregistered\ at no charge, and automatically 
-convert them to grayscale for print versions. In most journals, figures and 
-tables may alternatively be printed in color if an author chooses to do so. 
-Please note that this service comes at an extra expense to the author. If 
-you intend to have print color graphics, include a note with your final 
-paper indicating which figures or tables you would like to be handled that 
-way, and stating that you are willing to pay the additional fee.
-
-\section{Conclusion}
-A conclusion section is not required. Although a conclusion may review the 
-main points of the paper, do not replicate the abstract as the conclusion. A 
-conclusion might elaborate on the importance of the work or suggest 
-applications and extensions. 
-
-\appendices
-
-Appendixes, if needed, appear before the acknowledgment.
-
-\section*{Acknowledgment}
-
-The preferred spelling of the word ``acknowledgment'' in American English is 
-without an ``e'' after the ``g.'' Use the singular heading even if you have 
-many acknowledgments. Avoid expressions such as ``One of us (S.B.A.) would 
-like to thank $\ldots$ .'' Instead, write ``F. A. Author thanks $\ldots$ .'' In most 
-cases, sponsor and financial support acknowledgments are placed in the 
-unnumbered footnote on the first page, not here.
-
-\section*{References and Footnotes}
-
-\subsection{References}
-References need not be cited in text. When they are, they appear on the 
-line, in square brackets, inside the punctuation. Multiple references are 
-each numbered with separate brackets. When citing a section in a book, 
-please give the relevant page numbers. In text, refer simply to the 
-reference number. Do not use ``Ref.'' or ``reference'' except at the 
-beginning of a sentence: ``Reference \cite{b3} shows $\ldots$ .'' Please do not use 
-automatic endnotes in \emph{Word}, rather, type the reference list at the end of the 
-paper using the ``References'' style.
-
-Reference numbers are set flush left and form a column of their own, hanging 
-out beyond the body of the reference. The reference numbers are on the line, 
-enclosed in square brackets. In all references, the given name of the author 
-or editor is abbreviated to the initial only and precedes the last name. Use 
-them all; use \emph{et al.} only if names are not given. Use commas around Jr., 
-Sr., and III in names. Abbreviate conference titles. When citing IEEE 
-transactions, provide the issue number, page range, volume number, year, 
-and/or month if available. When referencing a patent, provide the day and 
-the month of issue, or application. References may not include all 
-information; please obtain and include relevant information. Do not combine 
-references. There must be only one reference with each number. If there is a 
-URL included with the print reference, it can be included at the end of the 
-reference. 
-
-Other than books, capitalize only the first word in a paper title, except 
-for proper nouns and element symbols. For papers published in translation 
-journals, please give the English citation first, followed by the original 
-foreign-language citation See the end of this document for formats and 
-examples of common references. For a complete discussion of references and 
-their formats, see the IEEE style manual at
-\underline{http://www.ieee.org/authortools}.
-
-\subsection{Footnotes}
-Number footnotes separately in superscript numbers.\footnote{It is recommended that footnotes be avoided (except for 
-the unnumbered footnote with the receipt date on the first page). Instead, 
-try to integrate the footnote information into the text.} Place the actual 
-footnote at the bottom of the column in which it is cited; do not put 
-footnotes in the reference list (endnotes). Use letters for table footnotes 
-(see Table \ref{table}).
-
-\section{Submitting Your Paper for Review}
-
-\subsection{Final Stage}
-When you submit your final version (after your paper has been accepted), 
-print it in two-column format, including figures and tables. You must also 
-send your final manuscript on a disk, via e-mail, or through a Web 
-manuscript submission system as directed by the society contact. You may use 
-\emph{Zip} for large files, or compress files using \emph{Compress, Pkzip, Stuffit,} or \emph{Gzip.} 
-
-Also, send a sheet of paper or PDF with complete contact information for all 
-authors. Include full mailing addresses, telephone numbers, fax numbers, and 
-e-mail addresses. This information will be used to send each author a 
-complimentary copy of the journal in which the paper appears. In addition, 
-designate one author as the ``corresponding author.'' This is the author to 
-whom proofs of the paper will be sent. Proofs are sent to the corresponding 
-author only.
-
-\subsection{Review Stage Using ScholarOne\textregistered\ Manuscripts}
-Contributions to the Transactions, Journals, and Letters may be submitted 
-electronically on IEEE's on-line manuscript submission and peer-review 
-system, ScholarOne\textregistered\ Manuscripts. You can get a listing of the 
-publications that participate in ScholarOne at 
-\underline{http://www.ieee.org/publications\_standards/publications/}\break\underline{authors/authors\_submission.html}.
-First check if you have an existing account. If there is none, please create 
-a new account. After logging in, go to your Author Center and click ``Submit 
-First Draft of a New Manuscript.'' 
-
-Along with other information, you will be asked to select the subject from a 
-pull-down list. Depending on the journal, there are various steps to the 
-submission process; you must complete all steps for a complete submission. 
-At the end of each step you must click ``Save and Continue''; just uploading 
-the paper is not sufficient. After the last step, you should see a 
-confirmation that the submission is complete. You should also receive an 
-e-mail confirmation. For inquiries regarding the submission of your paper on 
-ScholarOne Manuscripts, please contact oprs-support@ieee.org or call +1 732 
-465 5861.
-
-ScholarOne Manuscripts will accept files for review in various formats. 
-Please check the guidelines of the specific journal for which you plan to 
-submit.
-
-You will be asked to file an electronic copyright form immediately upon 
-completing the submission process (authors are responsible for obtaining any 
-security clearances). Failure to submit the electronic copyright could 
-result in publishing delays later. You will also have the opportunity to 
-designate your article as ``open access'' if you agree to pay the IEEE open 
-access fee. 
-
-\subsection{Final Stage Using ScholarOne Manuscripts}
-Upon acceptance, you will receive an email with specific instructions 
-regarding the submission of your final files. To avoid any delays in 
-publication, please be sure to follow these instructions. Most journals 
-require that final submissions be uploaded through ScholarOne Manuscripts, 
-although some may still accept final submissions via email. Final 
-submissions should include source files of your accepted manuscript, high 
-quality graphic files, and a formatted pdf file. If you have any questions 
-regarding the final submission process, please contact the administrative 
-contact for the journal. 
-
-In addition to this, upload a file with complete contact information for all 
-authors. Include full mailing addresses, telephone numbers, fax numbers, and 
-e-mail addresses. Designate the author who submitted the manuscript on 
-ScholarOne Manuscripts as the ``corresponding author.'' This is the only 
-author to whom proofs of the paper will be sent. 
-
-\subsection{Copyright Form}
-Authors must submit an electronic IEEE Copyright Form (eCF) upon submitting 
-their final manuscript files. You can access the eCF system through your 
-manuscript submission system or through the Author Gateway. You are 
-responsible for obtaining any necessary approvals and/or security 
-clearances. For additional information on intellectual property rights, 
-visit the IEEE Intellectual Property Rights department web page at 
-\underline{http://www.ieee.org/publications\_standards/publications/}\break\underline{rights/index.html}. 
-
-\section{IEEE Publishing Policy}
-The general IEEE policy requires that authors should only submit original 
-work that has neither appeared elsewhere for publication, nor is under 
-review for another refereed publication. The submitting author must disclose 
-all prior publication(s) and current submissions when submitting a 
-manuscript. Do not publish ``preliminary'' data or results. The submitting 
-author is responsible for obtaining agreement of all coauthors and any 
-consent required from employers or sponsors before submitting an article. 
-The IEEE Access Department strongly discourages courtesy 
-authorship; it is the obligation of the authors to cite only relevant prior 
-work.
-
-The IEEE Access Department does not publish conference 
-records or proceedings, but can publish articles related to conferences that 
-have undergone rigorous peer review. Minimally, two reviews are required for 
-every article submitted for peer review.
-
-\section{Publication Principles}
-The two types of contents of that are published are; 1) peer-reviewed and 2) 
-archival. The Access Department publishes scholarly 
-articles of archival value as well as tutorial expositions and critical 
-reviews of classical subjects and topics of current interest. 
-
-Authors should consider the following points:
-
-\begin{enumerate}
-\item Technical papers submitted for publication must advance the state of knowledge and must cite relevant prior work. 
-\item The length of a submitted paper should be commensurate with the importance, or appropriate to the complexity, of the work. For example, an obvious extension of previously published work might not be appropriate for publication or might be adequately treated in just a few pages.
-\item Authors must convince both peer reviewers and the editors of the scientific and technical merit of a paper; the standards of proof are higher when extraordinary or unexpected results are reported. 
-\item Because replication is required for scientific progress, papers submitted for publication must provide sufficient information to allow readers to perform similar experiments or calculations and 
-use the reported results. Although not everything need be disclosed, a paper 
-must contain new, useable, and fully described information. For example, a 
-specimen's chemical composition need not be reported if the main purpose of 
-a paper is to introduce a new measurement technique. Authors should expect 
-to be challenged by reviewers if the results are not supported by adequate 
-data and critical details.
-\item Papers that describe ongoing work or announce the latest technical achievement, which are suitable for presentation at a professional conference, may not be appropriate for publication.
-\end{enumerate}
-
-\section{Reference Examples}
-
+Depending on the data type and application goals, graphs can be categorized into two main types:
 \begin{itemize}
-
-\item \emph{Basic format for books:}\\
-J. K. Author, ``Title of chapter in the book,'' in \emph{Title of His Published Book, x}th ed. City of Publisher, (only U.S. State), Country: Abbrev. of Publisher, year, ch. $x$, sec. $x$, pp. \emph{xxx--xxx.}\\
-See \cite{b1,b2}.
-
-\item \emph{Basic format for periodicals:}\\
-J. K. Author, ``Name of paper,'' \emph{Abbrev. Title of Periodical}, vol. \emph{x, no}. $x, $pp\emph{. xxx--xxx, }Abbrev. Month, year, DOI. 10.1109.\emph{XXX}.123456.\\
-See \cite{b3}--\cite{b5}.
-
-\item \emph{Basic format for reports:}\\
-J. K. Author, ``Title of report,'' Abbrev. Name of Co., City of Co., Abbrev. State, Country, Rep. \emph{xxx}, year.\\
-See \cite{b6,b7}.
-
-\item \emph{Basic format for handbooks:}\\
-\emph{Name of Manual/Handbook, x} ed., Abbrev. Name of Co., City of Co., Abbrev. State, Country, year, pp. \emph{xxx--xxx.}\\
-See \cite{b8,b9}.
-
-\item \emph{Basic format for books (when available online):}\\
-J. K. Author, ``Title of chapter in the book,'' in \emph{Title of
-Published Book}, $x$th ed. City of Publisher, State, Country: Abbrev.
-of Publisher, year, ch. $x$, sec. $x$, pp. \emph{xxx--xxx}. [Online].
-Available: \underline{http://www.web.com}\\
-See \cite{b10}--\cite{b13}.
-
-\item \emph{Basic format for journals (when available online):}\\
-J. K. Author, ``Name of paper,'' \emph{Abbrev. Title of Periodical}, vol. $x$, no. $x$, pp. \emph{xxx--xxx}, Abbrev. Month, year. Accessed on: Month, Day, year, DOI: 10.1109.\emph{XXX}.123456, [Online].\\
-See \cite{b14}--\cite{b16}.
-
-\item \emph{Basic format for papers presented at conferences (when available online): }\\
-J.K. Author. (year, month). Title. presented at abbrev. conference title. [Type of Medium]. Available: site/path/file\\
-See \cite{b17}.
-
-\item \emph{Basic format for reports and handbooks (when available online):}\\
-J. K. Author. ``Title of report,'' Company. City, State, Country. Rep. no., (optional: vol./issue), Date. [Online] Available: site/path/file\\
-See \cite{b18,b19}.
-
-\item \emph{Basic format for computer programs and electronic documents (when available online): }\\
-Legislative body. Number of Congress, Session. (year, month day). \emph{Number of bill or resolution}, \emph{Title}. [Type of medium]. Available: site/path/file\\
-\textbf{\emph{NOTE: }ISO recommends that capitalization follow the accepted practice for the language or script in which the information is given.}\\
-See \cite{b20}.
-
-\item \emph{Basic format for patents (when available online):}\\
-Name of the invention, by inventor's name. (year, month day). Patent Number [Type of medium]. Available: site/path/file\\
-See \cite{b21}.
-
-\item \emph{Basic format}\emph{for conference proceedings (published):}\\
-J. K. Author, ``Title of paper,'' in \emph{Abbreviated Name of Conf.}, City of Conf., Abbrev. State (if given), Country, year, pp. \emph{xxxxxx.}\\
-See \cite{b22}.
-
-\item \emph{Example for papers presented at conferences (unpublished):}\\
-See \cite{b23}.
-
-\item \emph{Basic format for patents}$:$\\
-J. K. Author, ``Title of patent,'' U.S. Patent \emph{x xxx xxx}, Abbrev. Month, day, year.\\
-See \cite{b24}.
-
-\item \emph{Basic format for theses (M.S.) and dissertations (Ph.D.):}
-\begin{enumerate}
-\item J. K. Author, ``Title of thesis,'' M.S. thesis, Abbrev. Dept., Abbrev. Univ., City of Univ., Abbrev. State, year.
-\item J. K. Author, ``Title of dissertation,'' Ph.D. dissertation, Abbrev. Dept., Abbrev. Univ., City of Univ., Abbrev. State, year.
-\end{enumerate}
-See \cite{b25,b26}.
-
-\item \emph{Basic format for the most common types of unpublished references:}
-\begin{enumerate}
-\item J. K. Author, private communication, Abbrev. Month, year.
-\item J. K. Author, ``Title of paper,'' unpublished.
-\item J. K. Author, ``Title of paper,'' to be published.
-\end{enumerate}
-See \cite{b27}--\cite{b29}.
-
-\item \emph{Basic formats for standards:}
-\begin{enumerate}
-\item \emph{Title of Standard}, Standard number, date.
-\item \emph{Title of Standard}, Standard number, Corporate author, location, date.
-\end{enumerate}
-See \cite{b30,b31}.
-
-\item \emph{Article number in~reference examples:}\\
-See \cite{b32,b33}.
-
-\item \emph{Example when using et al.:}\\
-See \cite{b34}.
+    \item Homogeneous Graph: A homogeneous graph is a graph where all nodes and edges are of the same type. For example, in a movie recommendation system, a homogeneous graph might represent users as nodes, with edges connecting users who exhibit similar viewing behaviors. This type is simple and easy to process but does not fully utilize the diversity of entity types and relationships in the data.
+    \item Heterogeneous Graph: A heterogeneous graph, also known as a non-homogeneous graph, is a graph where nodes and edges belong to multiple types, reflecting the complex structure of real-world data \cite{shi2018heterogeneous}. In the context of MOOC course recommendation, a heterogeneous graph is used to represent entities such as learners, courses, concepts, teachers, and relationships like enrollment, teaching, or category affiliation. A heterogeneous graph is formally defined as follows:\\
+    A heterogeneous graph \( G = (V, E, \phi, \psi) \), where:
+    \begin{itemize}
+        \item \( V \): set of nodes, where each node \( v \in V \) belongs to a type \( \phi(v) \in \mathcal{A} \), with \( \mathcal{A} \) being the set of node types (e.g., learners, courses).
+        \item \( E \): set of edges, where each edge \( e \in E \) belongs to a type \( \psi(e) \in \mathcal{R} \), with \( \mathcal{R} \) being the set of relationship types (e.g., enrollment, teaching).
+        \item \( \phi \): node type mapping function, \( \phi: V \rightarrow \mathcal{A} \).
+        \item \( \psi \): edge type mapping function, \( \psi: E \rightarrow \mathcal{R} \).
+    \end{itemize}
 
 \end{itemize}
 
-\begin{thebibliography}{00}
+Graph data provides several key advantages in MOOC systems. It offers a structured and visual representation, clearly modeling natural connections between educational entities. Additionally, it enables the integration of heterogeneous data, accommodating various entity types and relationships within a single structure. The graph approach is scalable and updatable, allowing easy addition of new nodes, such as new learners or courses, and edges, such as new interactions, without disrupting the system. Furthermore, it serves as a foundation for graph representation learning algorithms, such as GCN, GAT, and R-GCN, which extract informative features for each node to support effective recommendations.
 
-\bibitem{b1} G. O. Young, ``Synthetic structure of industrial plastics,'' in \emph{Plastics,} 2\textsuperscript{nd} ed., vol. 3, J. Peters, Ed. New York, NY, USA: McGraw-Hill, 1964, pp. 15--64.
+\subsection{Heterogeneous Graph Neural Network}
+\label{sec:hetgnn_theory}
+GNNs are deep learning models designed to process graph-structured data, where nodes represent entities and edges denote relationships. GNNs generate node embeddings by iteratively aggregating information from a node's neighbors and combining it with its own features, supporting tasks like node classification, link prediction, and recommendation. Variants such as GraphSAGE \cite{hamilton2017inductive} sample neighbors for scalability, while GAT \cite{velivckovic2017graph} employs an attention mechanism to weigh neighbor contributions. 
 
-\bibitem{b2} W.-K. Chen, \emph{Linear Networks and Systems.} Belmont, CA, USA: Wadsworth, 1993, pp. 123--135.
+Building on these principles, Zhang et al. \cite{zhang2019hetgnn} proposed the HetGNN to handle content-associated heterogeneous graphs (C-HetG), which involve multiple node and edge types with diverse content (e.g., text, attributes, images). HetGNN aims to generate node embeddings that capture both heterogeneous structural relationships (e.g., authors writing papers) and varied content attributes, addressing three challenges: sampling correlated heterogeneous neighbors, encoding diverse content, and aggregating information from different neighbor types. To address the first challenge, Zhang et al. \cite{zhang2019hetgnn} employ a random walk with restart strategy to sample a fixed-size set of neighbors for each node \( v \), grouped by type to ensure comprehensive coverage. For content encoding, HetGNN uses a Bi-directional LSTM (Bi-LSTM) to capture interactions among heterogeneous content \( C_v \), producing a content embedding:
+\begin{equation}
+f_1(v) = \frac{1}{|C_v|} \sum_{i \in C_v} \left[ \overrightarrow{\text{LSTM}}(\mathcal{FC}_{\theta_x}(\mathbf{x}_i)) \oplus \overleftarrow{\text{LSTM}}(\mathcal{FC}_{\theta_x}(\mathbf{x}_i)) \right],
+\end{equation}
+where \( \mathbf{x}_i \) is a pre-trained feature vector for content item \( i \), \( \mathcal{FC}_{\theta_x} \) is a fully connected layer, and \( \oplus \) denotes concatenation. For neighbor aggregation, HetGNN employs type-specific Bi-LSTMs to aggregate neighbor embeddings, followed by an attention mechanism to combine them with the node's content embedding, yielding the final embedding:
+\begin{equation}
+\mathcal{E}_v = \alpha^{v,v} f_1(v) + \sum_{t \in \mathcal{A}} \alpha^{v,t} f_2^t(v),
+\end{equation}
+where \( f_2^t(v) \) is the aggregated embedding for neighbors of type \( t \), and \( \alpha^{v,t} \) are attention weights reflecting the influence of each type. The model is trained end-to-end using a graph context loss with negative sampling, optimizing the objective:
+\begin{equation}
+o_2 = \sum_{(v, v_c, v_{c'}) \in T_{\text{walk}}} \log \sigma(\mathcal{E}_v \cdot \mathcal{E}_{v_c}) + \log \sigma(-\mathcal{E}_v \cdot \mathcal{E}_{v_{c'}}),
+\end{equation}
+where \( T_{\text{walk}} \) contains triplets from random walks, and \( v_c, v_{c'} \) are context and negative nodes, respectively. As demonstrated by Zhang et al. \cite{zhang2019hetgnn}, HetGNN excels in tasks like link prediction, recommendation, and node classification, supporting both transductive and inductive learning, though it requires careful hyperparameter tuning and may face computational challenges for large graphs.
 
-\bibitem{b3} J. U. Duncombe, ``Infrared navigation---Part I: An assessment of feasibility,'' \emph{IEEE Trans. Electron Devices}, vol. ED-11, no. 1, pp. 34--39, Jan. 1959, 10.1109/TED.2016.2628402.
+\subsection{Knowledge Graph-Based Recommendation Model}
 
-\bibitem{b4} E. P. Wigner, ``Theory of traveling-wave optical laser,'' \emph{Phys. Rev}., vol. 134, pp. A635--A646, Dec. 1965.
+Recommendations powered by knowledge graphs have emerged as a powerful approach to enhance the accuracy and interpretability of recommendation systems. This section delves into the fascinating foundational concepts of these models, drawing significant insights from \cite{wang2019kgat}.
 
-\bibitem{b5} E. H. Miller, ``A note on reflector arrays,'' \emph{IEEE Trans. Antennas Propagat}., to be published.
+\subsubsection{Knowledge Graph}
 
-\bibitem{b6} E. E. Reber, R. L. Michell, and C. J. Carter, ``Oxygen absorption in the earth's atmosphere,'' Aerospace Corp., Los Angeles, CA, USA, Tech. Rep. TR-0200 (4230-46)-3, Nov. 1988.
+A knowledge graph is defined as a heterogeneous network comprising relational triplets between entities, such as (entity: Hugh Jackman, relation: ActorOf, entity: Logan). In recommendation systems, a knowledge graph is integrated with user-item interactions to form a collaborative knowledge graph (CKG). CKG combines a bipartite user-item graph, represented as
+\begin{equation}
+    G_1 = \{ (u, y_{ui}, i) | u \in U, i \in I\}
+\end{equation}
+and a knowledge graph, represented as
+\begin{equation}
+    G_2 = \{ (h, r, t) | h, t \in E, r \in R\}
+\end{equation}
+Resulting in a comprehensive graph
+\begin{equation}
+    G = \{ (h, r, t) | h, t \in E' , r \in R' \}
+\end{equation}
+where \( E' = E \cup U \) (including entities from the KG and users) and \( R' = R \cup \{Interact\} \) (including relations from the KG and interaction relations).
 
-\bibitem{b7} J. H. Davis and J. R. Cogdell, ``Calibration program for the 16-foot antenna,'' Elect. Eng. Res. Lab., Univ. Texas, Austin, TX, USA, Tech. Memo. NGL-006-69-3, Nov. 15, 1987.
+CKG enables modeling of high-order connectivity, i.e., multi-step relational paths between users and items, such as \(
+u_1 \xrightarrow{r_1} i_1 \xrightarrow{r_2} e_1 \xrightarrow{r_2} i_2 \xrightarrow{r_1} \{u_2, u_3\}
+\). However, directly computing these high-order connections can be computationally intensive, necessitating methods like attention mechanisms to assess the importance of such paths.
 
-\bibitem{b8} \emph{Transmission Systems for Communications}, 3\textsuperscript{rd} ed., Western Electric Co., Winston-Salem, NC, USA, 1985, pp. 44--60.
+Traditional recommendation systems, such as FM, typically treat each user-item interaction as an independent case, with side information encoded. However, this approach fails to leverage relationships between items. For instance, two films may not be directly related but could share a production company or a supporting actor. Knowledge graphs address this limitation by linking items to their attributes, creating a hybrid structure combining a knowledge graph and a user-item graph. Exploring and utilizing these latent connections is key to enhancing recommendation quality. In this structure, high-order relations, connections between items via one or more linked attributes, play a crucial role in improving recommendation performance. Research \cite{wang2019kgat} indicates that using knowledge graphs helps recommendation systems overcome limitations of traditional models, thereby improving prediction accuracy and personalization.
 
-\bibitem{b9} \emph{Motorola Semiconductor Data Manual}, Motorola Semiconductor Products Inc., Phoenix, AZ, USA, 1989.
+\subsubsection{Attention Mechanism}
 
-\bibitem{b10} G. O. Young, ``Synthetic structure of industrial
-plastics,'' in Plastics, vol. 3, Polymers of Hexadromicon, J. Peters,
-Ed., 2\textsuperscript{nd} ed. New York, NY, USA: McGraw-Hill, 1964, pp. 15-64.
-[Online]. Available:
-\underline{http://www.bookref.com}.
+KGAT employs an attention mechanism to determine the weights of neighbors during embedding propagation, assessing the importance of high-order relations. The attention score is computed as:
+\begin{equation}
+\pi(h, r, t) = \left( W_r e_t \right)^\top \tanh \left( W_r e_h + e_r \right)
+\end{equation}
 
-\bibitem{b11} \emph{The Founders' Constitution}, Philip B. Kurland
-and Ralph Lerner, eds., Chicago, IL, USA: Univ. Chicago Press, 1987.
-[Online]. Available: \underline{http://press-pubs.uchicago.edu/founders/}
+This score is then normalized using a softmax function to ensure the total weight sums to 1:
+\begin{equation}
+\pi(h, r, t) = \frac{\exp(\pi(h, r, t))}{\sum_{(h, r', t') \in N_h} \exp(\pi(h, r', t'))}
+\end{equation}
 
-\bibitem{b12} The Terahertz Wave eBook. ZOmega Terahertz Corp., 2014.
-[Online]. Available:
-\underline{http://dl.z-thz.com/eBook/zomega\_ebook\_pdf\_1206\_sr.pdf}. Accessed on: May 19, 2014.
+This attention mechanism enables the model to focus on the most relevant information, enhancing interpretability by highlighting influential neighbors or relational paths in recommendations. For example, in a case study on the Amazon-Book dataset, the attention mechanism identified the path \(
+u_{208} \xrightarrow{r_0} \text{Old Man's War} \xrightarrow{r_{14}} \text{John Scalzi} \xrightarrow{r_{14}} i_{4293}
+\) as having the highest attention score, explaining why item \( i_{4293} \) was recommended to the user \( u_{208} \).
 
-\bibitem{b13} Philip B. Kurland and Ralph Lerner, eds., \emph{The
-Founders' Constitution.} Chicago, IL, USA: Univ. of Chicago Press,
-1987, Accessed on: Feb. 28, 2010, [Online] Available:
-\underline{http://press-pubs.uchicago.edu/founders/}
+\subsubsection{Embedding Propagation}
 
-\bibitem{b14} J. S. Turner, ``New directions in communications,'' \emph{IEEE J. Sel. Areas Commun}., vol. 13, no. 1, pp. 11-23, Jan. 1995.
+Beyond the above theories, the embedding propagation process in KGAT plays a critical role, recursively updating node embeddings based on neighbor information to capture high-order connections. Neighbor information is aggregated as:
+\begin{equation}
+     e_{N_h} = \sum_{(h, r, t) \in N_h} \pi(h, r, t) e_t
+\end{equation}
 
-\bibitem{b15} W. P. Risk, G. S. Kino, and H. J. Shaw, ``Fiber-optic frequency shifter using a surface acoustic wave incident at an oblique angle,'' \emph{Opt. Lett.}, vol. 11, no. 2, pp. 115--117, Feb. 1986.
+This process employs aggregation methods such as GCN, GraphSAGE, or Bi-Interaction. For instance, with Bi-Interaction, the aggregation function is defined as:
+\begin{equation}
+    \begin{split} % Bắt đầu môi trường split
+        f_{Bi-Interaction} &= \text{LeakyReLU}(W_1(e_h + e_{N_h})) \\ % Xuống dòng tại đây
+        &\quad + \text{LeakyReLU}(W_2(e_h \odot e_{N_h}))
+    \end{split} % Kết thúc môi trường split
+\end{equation}
+Propagation occurs across multiple layers, with the representation at layer \( l \) given by:
+\begin{equation}
+    e^{(l)}_h = f(e^{(l-1)}_h, e^{(l-1)}_{N_h})
+\end{equation}
 
-\bibitem{b16} P. Kopyt \emph{et al., ``}Electric properties of graphene-based conductive layers from DC up to terahertz range,'' \emph{IEEE THz Sci. Technol.,} to be published. DOI: 10.1109/TTHZ.2016.2544142.
+This allows the model to capture complex relationships, such as \(
+u_2 \xrightarrow{r_1} i_2 \xrightarrow{r_2} e_1 \xrightarrow{r_2} i_1 \xrightarrow{r_1} u_1
+\). The embedding propagation process has linear time complexity, mitigating computational overhead when handling large graphs.
 
-\bibitem{b17} PROCESS Corporation, Boston, MA, USA. Intranets:
-Internet technologies deployed behind the firewall for corporate
-productivity. Presented at INET96 Annual Meeting. [Online].
-Available: \underline{http://home.process.com/Intranets/wp2.htp}
 
-\bibitem{b18} R. J. Hijmans and J. van Etten, ``Raster: Geographic analysis and modeling with raster data,'' R Package Version 2.0-12, Jan. 12, 2012. [Online]. Available: \underline {http://CRAN.R-project.org/package=raster} 
 
-\bibitem{b19} Teralyzer. Lytera UG, Kirchhain, Germany [Online].
-Available:
-\underline{http://www.lytera.de/Terahertz\_THz\_Spectroscopy.php?id=home}, Accessed on: Jun. 5, 2014
+\section{Proposed Method}
+\label{sec:proposed_method}
+\subsection{Experimental Data}
 
-\bibitem{b20} U.S. House. 102\textsuperscript{nd} Congress, 1\textsuperscript{st} Session. (1991, Jan. 11). \emph{H. Con. Res. 1, Sense of the Congress on Approval of}  \emph{Military Action}. [Online]. Available: LEXIS Library: GENFED File: BILLS
+MOOCCubeX \cite{yu2021mooccubex} is a comprehensive, knowledge-oriented dataset tailored to advance research in adaptive learning. It encompasses a vast collection of educational resources and learner interactions, including 4,216 courses and 230,263 lecture videos. The dataset also contains 358,265 exercises and 637,572 fine-grained concepts, providing a rich foundation for detailed analysis. Additionally, it captures over 296 million learning behavior records from 3,330,294 learners, offering extensive insights into learner engagement and interactions.
 
-\bibitem{b21} Musical toothbrush with mirror, by L.M.R. Brooks. (1992, May 19). Patent D 326 189 [Online]. Available: NEXIS Library: LEXPAT File: DES
+Unlike previous datasets limited by size, detail, or updates, MOOCCubeX provides a rich data structure encompassing course information, instructional content, learner details, learning behaviors, and knowledge relationships. The data is processed and organized with a knowledge-oriented approach through a concept graph extracted from video subtitles using weakly supervised learning models.
 
-\bibitem{b22} D. B. Payne and J. R. Stern, ``Wavelength-switched pas- sively coupled single-mode optical network,'' in \emph{Proc. IOOC-ECOC,} Boston, MA, USA, 1985, pp. 585--590.
+\textbf{Course Resources.} Each course hosted on the XuetangX platform is structured into multiple chapters, comprising a sequence of lecture videos and exercises. The collected resource data encompasses comprehensive course information, including the course name, description, instructor details, affiliated university, and classification across 88 academic disciplines. The dataset includes over 2.7 million lecture videos, each accompanied by detailed timeline-based subtitles that facilitate knowledge extraction and behavioral analysis. Additionally, the dataset contains 358,265 exercises, which incorporate over 2.4 million questions categorized into single-choice, multiple-choice, and essay formats.
 
-\bibitem{b23} D. Ebehard and E. Voges, ``Digital single sideband detection for interferometric sensors,'' presented at the \emph{2\textsuperscript{nd} Int. Conf. Optical Fiber Sensors,} Stuttgart, Germany, Jan. 2-5, 1984.
+\textbf{Learner Behaviors.} Learner activities are meticulously documented to provide a granular view of engagement. This includes anonymized learner profiles capturing demographic details such as age, gender, and region. Video-watching behaviors are recorded through over 154 million ``Heartbeat log'' entries, which track viewing activity at five-second intervals. Exercise submissions are represented by over 133 million records, detailing multiple submission attempts, associated scores, and submission timestamps. Furthermore, the dataset includes over 8 million comment and response records tied to specific videos or exercises, reflecting learner interactions within discussion forums.
 
-\bibitem{b24} G. Brandli and M. Dick, ``Alternating current fed power supply,'' U.S. Patent 4 084 217, Nov. 4, 1978.
+\textbf{Knowledge Concepts and Prerequisite Relationships.} Through the application of weakly supervised learning and analysis of video subtitles, over 57,000 knowledge concepts have been extracted, alongside the identification of 126,000 prerequisite relationships among these concepts. These concepts are systematically annotated to label videos, exercises, and comments, constructing a HIN. This network serves as a robust foundation for developing knowledge-based recommendation models, enabling advanced analyses and personalized learning experiences.
 
-\bibitem{b25} J. O. Williams, ``Narrow-band analyzer,'' Ph.D. dissertation, Dept. Elect. Eng., Harvard Univ., Cambridge, MA, USA, 1993.
+\subsection{Data Analysis}
 
-\bibitem{b26} N. Kawasaki, ``Parametric study of thermal and chemical nonequilibrium nozzle flow,'' M.S. thesis, Dept. Electron. Eng., Osaka Univ., Osaka, Japan, 1993.
+To develop and evaluate the HetGNN-KGAT method, the MOOCCubeX dataset is used as the primary data source due to its comprehensiveness and ability to represent entities and complex relationships in the MOOC environment \cite{yu2021mooccubex}. This section describes the selected data files, the data consolidation process, newly created attributes, detailed attribute descriptions, and notable exploratory data analysis (EDA), particularly the missing data rate.
 
-\bibitem{b27} A. Harrison, private communication, May 1995.
+\subsubsection{Data Files Used}
 
-\bibitem{b28} B. Smith, ``An approach to graphs of linear forms,'' unpublished.
+The selected data files from MOOCCubeX include entity and relationship files, listed in Table~\ref{tab:data_files} with their corresponding English names. These files were chosen because they provide essential information for constructing a HIN and supporting the stages of HetGNN-KGAT: relationship representation, data imputation with HetGNN, and recommendation with KGAT \cite{zhang2019hetgnn, shi2018heterogeneous, wang2019kgat}.
 
-\bibitem{b29} A. Brahms, ``Representation error for real numbers in binary computer arithmetic,'' IEEE Computer Group Repository, Paper R-67-85.
+\begin{table}[!t]
+\centering
+\caption{List of data files used from MOOCCubeX}
+\label{tab:data_files}
+\renewcommand{\arraystretch}{1.2}
+\scalebox{0.8}{
+\begin{tabular}{|l|l|}
+\hline
+\textbf{File name} & \textbf{Description} \\
+\hline
+course.json & Course Information \\
+user.json & User Information \\
+school.json & School Information \\
+teacher.json & Teacher Information \\
+video.json & Video Information \\
+problem.json & Problem Information \\
+concept.json & Concept Information \\
+course-field.txt & Course-Field Relation \\
+course-school.txt & Course-School Relation \\
+course-teacher.txt & Course-Teacher Relation \\
+user-video.json & User-Video Interaction \\
+exercise-problem.txt & Exercise-Problem Relation \\
+user-problem.json & User-Problem Interaction \\
+comment-reply.txt & Comment-Reply Relation \\
+course-comment.txt & Course-Comment Relation \\
+reply-reply.txt & Reply-Reply Relation \\
+user-comment.txt & User-Comment Interaction \\
+user-reply.txt & User-Reply Interaction \\
+video\_id-ccid.txt & Video-Subtitle Relation \\
+prerequisites/cs.json & CS Prerequisites \\
+prerequisites/math.json & Math Prerequisites \\
+prerequisites/psy.json & Psychology Prerequisites \\
+\hline
+\end{tabular}
+}
+\end{table}
 
-\bibitem{b30} IEEE Criteria for Class IE Electric Systems, IEEE Standard 308, 1969.
+The selection rationale for the MOOCCubeX dataset encompasses several key components. Entity files, including course.json, user.json, school.json, teacher.json, video.json, problem.json, and concept.json, provide foundational information on essential MOOC entities, which are critical for constructing nodes in a HIN as described in \cite{shi2018heterogeneous}. 
+Relationship files, such as course-field.txt, course-school.txt, course-teacher.txt, user-video.json, exercise-problem.txt, user-problem.json, comment-reply.txt, course-comment.txt, reply-reply.txt, user-comment.txt, user-reply.txt, and video\_id-ccid.txt, capture diverse interactions, such as course-field affiliations and learner-video viewing patterns, enabling the exploration of complex data structures as noted in \cite{yu2021mooccubex}. 
+Additionally, prerequisite files, including prerequisites/cs.json, prerequisites/math.json, and prerequisites/psy.json, supply prerequisite information for courses in specific academic fields, facilitating structured learning pathways.
 
-\bibitem{b31} Letter Symbols for Quantities, ANSI Standard Y10.5-1968.
+\subsubsection{Data Consolidation}
 
-\bibitem{b32} R. Fardel, M. Nagel, F. Nuesch, T. Lippert, and A. Wokaun, ``Fabrication of organic light emitting diode pixels by laser-assisted forward transfer,'' \emph{Appl. Phys. Lett.}, vol. 91, no. 6, Aug. 2007, Art. no. 061103.~
+The aforementioned data files are integrated into a unified file comprising 7,284,500 rows and 34 attributes, incorporating newly derived features. The consolidation process involves merging entity and relationship files using primary keys, such as user\_id, course\_id, video\_id, and concept\_id, to ensure data coherence. Data normalization is performed by converting time formats, such as enroll\_time to Unix time, standardizing list structures like \texttt{list<string>} and \texttt{list<float>}, and eliminating invalid entries. Furthermore, new attributes are generated to enrich recommendation capabilities, including course\_total\_comments to reflect total course interactions, user\_course\_num\_comment to track learner comment counts, and user\_course\_num\_replies to capture learner reply counts.
+%\subsubsection{Attribute Description}
+The attributes of the consolidated data file are detailed in Table~\ref{tab:data_attributes}, including column names, missing data rates, data types, and meanings.
 
-\bibitem{b33} J. Zhang and N. Tansu, ``Optical gain and laser characteristics of InGaN quantum wells on ternary InGaN substrates,'' \emph{IEEE Photon. J.}, vol. 5, no. 2, Apr. 2013, Art. no. 2600111
+\begin{table}[!t]
+\centering
+\caption{Description of attributes in the consolidated data file}
+\label{tab:data_attributes}
+\renewcommand{\arraystretch}{1.2}
+\scalebox{0.8}{
+\begin{tabular}{|p{3.2cm}|p{1cm}|p{2cm}|p{2.5cm}|}
+\hline
+\textbf{Column} & \textbf{Missing Rate (\%)} & \textbf{Data type} & \textbf{Description} \\
+\hline
+user\_id & 0 & string & Learner ID \\
+course\_id & 0 & string & Course ID \\
+enroll\_time & 0 & int (Unix time) & Course enrollment time \\
+course\_name & 0 & string & Course name \\
+course\_prerequisites & 0 & string & Course prerequisites \\
+course\_about & 0 & string & Course description \\
+course\_field & 73.12 & list<string> & Course field \\
+school\_id & 0.36 & list<string> & IDs of schools offering the course \\
+school\_name & 0.36 & list<string> & Names of schools offering the course \\
+school\_about & 0.36 & list<string> & Descriptions of schools offering the course \\
+school\_motto & 0.36 & list<string> & Mottos of schools \\
+teacher\_id & 0.13 & list<string> & Teacher IDs \\
+teacher\_name & 0.13 & list<string> & Teacher names \\
+teacher\_about & 0.13 & list<string> & Teacher descriptions \\
+teacher\_job\_title & 0.13 & list<string> & Teacher job titles \\
+teacher\_org\_name & 0.13 & list<string> & Teacher organizations \\
+video\_id & 37.92 & list<string> & Video IDs in the course \\
+video\_ccid & 37.92 & list<string> & Video subtitle IDs \\
+video\_duration & 37.92 & list<float> & Video durations \\
+user\_gender & 0 & int & Learner gender \\
+watch\_id & 99.94 & list<string> & Video IDs interacted with by learners \\
+total\_watch\_time & 99.94 & list<float> & Total video watching time \\
+actual\_watch\_time & 99.94 & list<float> & Actual video watching time \\
+exercise\_id & 1.93 & list<string> & Exercise IDs \\
+exercise\_num\_problem & 1.93 & list<int> & Number of questions per exercise \\
+doing\_exercise\_id & 99.69 & list<string> & IDs of correctly solved exercises \\
+doing\_num\_correct & 99.69 & list<int> & Number of correct answers \\
+concept\_id & 58.99 & list<string> & Concept IDs \\
+concept\_prerequisite & 58.99 & list<string> & Concept prerequisites \\
+concept\_name & 58.99 & list<string> & Concept names \\
+concept\_field & 58.99 & list<string> & Concept fields \\
+course\_total\_comments & 0 & int & Total course interactions \\
+user\_course\_num\_comment & 0 & int & Learner comment count \\
+user\_course\_num\_replies & 0 & int & Learner reply count \\
+\hline
+\end{tabular}
+}
+\end{table}
 
-\bibitem{b34} S. Azodolmolky~\emph{et al.}, Experimental demonstration of an impairment aware network planning and operation tool for transparent/translucent optical networks,''~\emph{J. Lightw. Technol.}, vol. 29, no. 4, pp. 439--448, Sep. 2011.
+\subsubsection{Exploratory Data Analysis (EDA)}
 
-\end{thebibliography}
+EDA was conducted to understand data characteristics and inform the design of the HetGNN-KGAT method. General statistics are presented in Table~\ref{tab:combine_data_overview}, including 7,284,500 rows, 367,103 learners, 2,766 courses, 410 schools, 8,909 teachers, 78 fields, 55,831 videos, 57,303 exercises, and 214,454 concepts.
 
-\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{a1.png}}]{First A. Author} (M'76--SM'81--F'87) and all authors may include 
-biographies. Biographies are often not included in conference-related
-papers. This author became a Member (M) of IEEE in 1976, a Senior
-Member (SM) in 1981, and a Fellow (F) in 1987. The first paragraph may
-contain a place and/or date of birth (list place, then date). Next,
-the author's educational background is listed. The degrees should be
-listed with type of degree in what field, which institution, city,
-state, and country, and year the degree was earned. The author's major
-field of study should be lower-cased. 
+\begin{table}[!t]
+\centering
+\caption{Overview of consolidated data}
+\label{tab:combine_data_overview}
+\renewcommand{\arraystretch}{1.2}
+\scalebox{0.8}{
+\begin{tabular}{|l|c|}
+\hline
+\textbf{Metric} & \textbf{Value} \\
+\hline
+Number of columns & 34 \\
+Number of rows & 7,284,500 \\
+Number of users & 367,103 \\
+Number of courses & 2,766 \\
+Number of schools & 410 \\
+Number of teachers & 8,909 \\
+Number of fields & 78 \\
+Number of videos & 55,831 \\
+Number of exercises & 57,303 \\
+Number of concepts & 214,454 \\
+\hline
+\end{tabular}
+}
+\end{table}
 
-The second paragraph uses the pronoun of the person (he or she) and not the 
-author's last name. It lists military and work experience, including summer 
-and fellowship jobs. Job titles are capitalized. The current job must have a 
-location; previous positions may be listed 
-without one. Information concerning previous publications may be included. 
-Try not to list more than three books or published articles. The format for 
-listing publishers of a book within the biography is: title of book 
-(publisher name, year) similar to a reference. Current and previous research 
-interests end the paragraph. The third paragraph begins with the author's 
-title and last name (e.g., Dr.\ Smith, Prof.\ Jones, Mr.\ Kajor, Ms.\ Hunter). 
-List any memberships in professional societies other than the IEEE. Finally, 
-list any awards and work for IEEE committees and publications. If a 
-photograph is provided, it should be of good quality, and 
-professional-looking. Following are two examples of an author's biography.
+Notable analyses of the MOOCCubeX dataset provide critical insights into its structure and utility. The analysis of missing data rates, as depicted in Table~\ref{tab:missing_rate}, reveals significant sparsity in learner interaction attributes. Attributes such as \textit{watch\_id}, \textit{total\_watch\_time}, and \textit{actual\_watch\_time} exhibit a 99.94\% missing rate, while \textit{doing\_exercise\_id} and \textit{doing\_num\_correct} show a 99.69\% missing rate, underscoring the data sparsity common in MOOCs \cite{kizilcec2015attrition_missing_MOOC}.
+
+Further examination of missing data indicates that attributes like \textit{course\_field} (73.12\%) and \textit{concept\_id}, \textit{concept\_prerequisite}, \textit{concept\_name}, and \textit{concept\_field} (58.99\%) also suffer from substantial missing rates. These gaps pose challenges for identifying learning paths. However, core attributes, including \textit{user\_id}, \textit{course\_id}, \textit{course\_name}, \textit{enroll\_time}, \textit{course\_about}, \textit{course\_prerequisites},\\ \textit{course\_total\_comments}, \textit{user\_course\_num\_comment}, and \textit{user\_course\_num\_replies}, demonstrate no missing values, ensuring robust data integrity for constructing HIN \cite{shi2018heterogeneous}.
+
+The entity distribution within MOOCCubeX highlights its knowledge richness. With 214,454 concepts compared to 2,766 courses and 367,103 learners, the dataset is well-suited for advanced models like HetGNN \cite{zhang2019hetgnn}. The learner count, expanded to 367,103 from 24,068 in prior analyses, reflects a significantly larger dataset scale, enhancing the capability to model learner behaviors effectively.
+Analysis of learner interactions reveals the value of new attributes such as \textit{course\_total\_comments},\\ \textit{user\_course\_num\_comment}, and \textit{user\_course\_num\_replies}, all with 0\% missing rates. These attributes offer critical insights into social engagement, enabling personalized recommendation systems through models like KGAT \cite{wang2019kgat}.
+Finally, the analysis of course fields identifies 78 distinct fields, but the \textit{course\_field} attribute has a 73.12\% missing rate, necessitating advanced imputation methods like those provided by HetGNN to improve data quality \cite{yu2021mooccubex}. Video attributes, including \textit{video\_id}, \textit{video\_ccid}, and \textit{video\_duration}, exhibit a 37.92\% missing rate, indicating persistent challenges in collecting comprehensive course material data.
+These analyses provide a foundation for designing the HetGNN-KGAT method, particularly using HetGNN for data imputation and KGAT for course recommendations \cite{zhang2019hetgnn, shi2018heterogeneous, wang2019kgat}.
+\subsection{HetGNN-KGAT: Personalized Course Recommendation via Knowledge Graph Completion and Attention-based Modeling}
+
+\begin{table}[h]
+    \centering
+    \caption{Missing value rate per column in the consolidated dataset}
+    \label{tab:missing_rate}
+    \scalebox{0.8}{
+        \fbox{%
+            \begin{tabular}{ccc}
+                \toprule
+                \textbf{No.} & \textbf{Column Name} & \textbf{Missing Rate (\%)} \\
+                \midrule
+                1 & actual\_watch\_time & 99.94 \\
+                2 & watch\_id & 99.94 \\
+                3 & total\_watch\_time & 99.9 \\
+                4 & doing\_exercise\_id & 99.69 \\
+                5 & doing\_num\_correct & 99.69 \\
+                6 & course\_field & 73.12 \\
+                7 & concept\_prerequisite & 59.0 \\
+                8 & concept\_field & 59.0 \\
+                9 & concept\_name & 59.0 \\
+                10 & concept\_id & 59.0 \\
+                11 & video\_duration & 37.9 \\
+                12 & video\_id & 37.9 \\
+                13 & video\_ccid & 37.9 \\
+                14 & exercise\_jd & 1.9 \\
+                15 & exercise\_num\_problem & 0.4 \\
+                16 & school\_name & 0.4 \\
+                17 & school\_motto & 0.4 \\
+                18 & school\_about & 0.4 \\
+                19 & school\_id & 0.4 \\
+                20 & teacher\_org\_name & 0.1 \\
+                21 & teacher\_job\_title & 0.1 \\
+                22 & teacher\_id & 0.1 \\
+                23 & teacher\_name & 0.1 \\
+                24 & teacher\_about & 0.0 \\
+                25 & course\_id & 0.0 \\
+                26 & user\_id & 0.0 \\
+                27 & course\_about & 0.0 \\
+                28 & course\_prerequisites & 0.0 \\
+                29 & course\_name & 0.0 \\
+                30 & enroll\_time & 0.0 \\
+                31 & user\_gender & 0.0 \\
+                32 & course\_total\_comments & 0.0 \\
+                33 & user\_course\_num\_comment & 0.0 \\
+                34 & user\_course\_num\_replies & 0.0 \\
+                % \bottomrule
+            \end{tabular}
+        }
+    }
+\end{table}
+
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=0.9\textwidth]{imgs/framework_journal.png}
+\caption{Operational workflow of HetGNN-KGAT}
+\label{fig:framework}
+\end{figure*}
+The proposed recommendation system in this study follows a three-stage process as depicted in Figure~\ref{fig:framework}: data collection and processing, building a combined recommendation model with link prediction, and performance evaluation. The primary goal of the method is not only to recommend suitable courses for learners but also to detect and impute missing links between entities in the MOOC knowledge graph, thereby refining the data structure to support more accurate recommendation inference.
+
+Data is collected from MOOCs, comprising two main components: course resources and learner behaviors. Course resources describe academic information such as titles, descriptions, concepts, instructors, organizing institutions, and subject categories. Meanwhile, learner behaviors record their interaction history, including enrolled courses, completed exercises, or interactions with learning videos. The data is consolidated into a heterogeneous graph where each node represents an entity and each edge represents a relationship between these entities.
+
+After collection, the data undergoes a processing stage to ensure quality before model construction. This stage begins with an overview data analysis and exploratory data mining to identify key features, determine distributions, and detect potential issues. The data is then assessed for completeness and consistency—two factors that directly impact the accuracy of the recommendation model \cite{nguyen2025data_quality}. The preprocessing includes technical operations such as feature extraction, data merging from multiple sources, handling duplicates, noise removal, and, notably, missing value imputation. In the proposed method, imputation of these missing values is handled using a link prediction model based on the HetGNN knowledge graph architecture.
+
+The core of the system is a hybrid recommendation model integrating HetGNN and KGAT. HetGNN is responsible for learning node representations on a heterogeneous graph by leveraging content and neighbor information for each entity to generate semantically rich embeddings. These node representations are subsequently used in a link prediction task to identify missing relationships between entities, particularly between learners and courses. This step is crucial for imputing data in the input graph, enhancing its completeness and improving the effectiveness of the recommendation inference stage. Specifically, predicted links with high probability are added to the knowledge graph as potential relationships, thereby improving the ability to detect accurate paths in the recommendation phase.
+
+After enriching the knowledge graph (CKG) with predicted links, the recommendation model applies KGAT to effectively exploit high-order relationships between learners and courses. KGAT integrates graph neural networks with an attention mechanism, using embedding propagation layers to update representations of entities (learners, courses, attributes) based on information from neighboring nodes. This process enables the model to automatically learn multi-level connections within the CKG, enhancing prediction capabilities without requiring predefined path patterns as in traditional methods.
+
+The entire trained model is evaluated using a separate test dataset, employing metrics such as Precision@k, Recall@k, NDCG@k, and MAP@k as described in \cite{nguyen2024hbert4rec, nguyen2025data_quality} to measure recommendation quality. Evaluation results are used to optimize the model by tuning hyperparameters, ensuring maximum effectiveness for personalized recommendation tasks in online learning environments.
+
+\subsubsection{Implementation of HetGNN for Imputation}
+HetGNN is used to impute sparse data by learning node embeddings from a heterogeneous graph, leveraging content and relational structure with two convolution layers (Algorithm \ref{alg:hetgnn}). Its selection for personalized course recommendation in MOOCs addresses data sparsity and complex relationships in the dataset, which limit modeling user preferences and course relevance. HetGNN models MOOCs data as a heterogeneous graph, capturing relationships like user-course interactions and course-concept prerequisites. Unlike Listwise Deletion, which risks information loss, or Statistical Imputation, which may introduce bias, HetGNN preserves data integrity by exploiting content and relational structures. Compared to KNN-based imputation, it better handles complex relationships, ensuring robust data processing. HetGNN enhances input data for the KGAT recommendation model, improving personalization by synthesizing user behavior and course attributes.
+
+\begin{algorithm}
+\caption{Two-Layer HetGNN Details}
+\label{alg:hetgnn}
+\small
+\begin{algorithmic}[1]
+\Require
+    \State $x\_dict$: Dictionary of initial node feature vectors (e.g., text descriptions, numerical data).
+    \State $edge\_index\_dict$: Dictionary of edge indices for each relationship type in the heterogeneous graph.
+    \State $metadata[1]$: List of edge types in the heterogeneous graph.
+    \State $hidden\_channels = 32$: Size of hidden vector space.
+\Ensure
+    \State $x\_dict$: Dictionary of final node representation vectors.
+\State \textbf{Initialize} HetGNN model with $hidden\_channels = 32$.
+\State \textbf{Input Layer}:
+    \State Receive $x\_dict$ (node features) and $edge\_index\_dict$ (graph structure).
+\State \textbf{Convolution Layer 1 (conv1)}:
+    \State Apply $HeteroConv$ with $SAGEConv$ modules for each $edge\_type \in metadata[1]$.
+    \State Map node features from initial space ($-1$) to hidden space ($hidden\_channels = 32$).
+    \State Aggregate neighbor features using $aggr=sum$ for each edge type.
+    \State Obtain node representation vectors after first convolution.
+\State \textbf{Activation}:
+    \State Apply $relu$ function to each node vector, preserving $None$ values if present.
+\State \textbf{Convolution Layer 2 (conv2)}:
+    \State Apply another $HeteroConv$ layer with $SAGEConv$ modules, using output vectors from $conv1$.
+    \State Aggregate neighbor features using $aggr=sum$ for each edge type.
+    \State Obtain refined node representation vectors.
+\State \textbf{Output}:
+    \State Return $x\_dict$, containing final node representation vectors.
+\State \textbf{Application}:
+    \State Use output vectors to impute sparse data or as input for KGAT.
+\end{algorithmic}
+\end{algorithm}
+
+{The HetGNN algorithm operates through a structured process to generate node embeddings. Initially, it takes node features (e.g., course descriptions, user profiles) and the graph's relational structure as input. It then samples a fixed set of neighboring nodes for each entity using a random walk strategy, grouping them by type to capture diverse relationships. These neighbors' features are encoded using a neural network to form initial embeddings. In the first convolution layer, the logic aggregates information from these neighbors for each relationship type, combining it with the node's own features. A non-linear activation function is applied to refine these embeddings. The second convolution layer repeats this aggregation to capture deeper interactions, producing final node embeddings. These embeddings are used to impute missing data, enhancing the quality of input for the recommendation model. This two-layer architecture ensures HetGNN can learn deep representations, combining heterogeneous neighbor information, and efficiently handle sparse data by aggregating across relationship types.}
+
+\subsubsection{ Implementation of KGAT for Recommendation}
+{The KGAT model \cite{wang2019kgat} is selected for implementation in the proposed method to generate course recommendations for users on data enriched by HetGNN. The HetGNN-KGAT implementation process follows the procedure outlined below (Figure \ref{fig:details_of_KGAT}). The selection of KGAT for personalized course recommendation in MOOCs is motivated by its ability to address the challenges of data sparsity and the complex relationships inherent in the MOOCs dataset. These challenges limit the ability to model user preferences and course relevance effectively, necessitating a method that can exploit intricate relational structures.}
+
+{KGAT is designed to leverage knowledge graphs by modeling high-order relationships among entities (e.g., users, courses, concepts) through a collaborative filtering approach enhanced with an attention mechanism. This makes it well-suited for MOOCs data, which includes diverse entities and relationships such as user-course interactions and course-concept prerequisites, organized as a heterogeneous graph. Unlike CBF, which relies solely on course content and overlooks relational context, KGAT captures multi-hop connections (e.g., user \(\rightarrow\) course \(\rightarrow\) concept \(\rightarrow\) related course) to enhance recommendation relevance. Compared to models like DeepFM, which do not explicitly utilize graph structures, or BPRMF, which depends on implicit feedback without considering high-order relationships, KGAT prioritizes significant relationships through its attention mechanism, improving personalization. Additionally, KGAT’s computational efficiency makes it suitable for large-scale MOOCs data, unlike reinforcement learning-based approaches such as UPGPR, which may incur high computational costs. By integrating with HetGNN’s enriched data, KGAT effectively utilizes high-quality node embeddings to produce accurate and personalized course recommendations, addressing the need for synthesizing user behavior and course attributes in the MOOCs recommendation problem.
+}
+
+\paragraph{Construction of a Knowledge Graph in the MOOC Context}
+
+The construction process inherently begins with the precise identification of the graph's fundamental components: nodes and edges. Within the MOOC data landscape, nodes typically represent key entities such as users, courses, schools, teachers, fields of study, videos, and concepts. Following the definition of nodes, a critical task is to delineate the diverse relationships (edges) that interconnect these entities. For instance, a user enrolls in a course, a course is taught by a teacher, a course is offered by a school, a course belongs to a specific field, a course contains video lectures, and these videos convey particular concepts. The meticulous identification and structuring of these entities and their interrelations form the bedrock for constructing a comprehensive Collaborative Knowledge Graph (CKG).
+
+\paragraph{Training the KGAT Model on the Constructed Graph Data}
+
+Represent nodes (users, courses, entities) in the knowledge graph as embedding vectors, forming the foundation for subsequent steps. Use TransR, a translation-based embedding method, ensuring that the embedding vectors of the relation \( r \) and head \( h \), tail \( t \) nodes comply with:
+\begin{equation}
+    e_r^h + e_r \approx e_r^t
+\end{equation}
+
+Where \( e_r^h \), \( e_r \), \( e_r^t \) are the corresponding embedding vectors.
+
+The feasibility score is calculated as:
+\begin{equation}
+    g(h, r, t) = \|W_r e_h + e_r - W_r e_t\|_2^2
+\end{equation}
+
+Where \( W_r \) is a relation-specific matrix that maps vectors into an appropriate space.
+
+Employ pairwise ranking loss to optimize the knowledge graph:
+\begin{equation}
+    L_{KG} = \sum_{(h, r, t, t') \in T} -\ln \sigma(g(h, r, t') - g(h, r, t))
+\end{equation}
+
+Where \( T = \{(h, r, t, t') | (h, r, t) \in G, (h, r, t') \notin G\} \), and \( G \) is the set of triples in the knowledge graph.
+
+Propagate information from a node’s neighbors to update representations while modeling high-order relationships through an attention mechanism. Subsequently, use aggregators to combine node and neighbor representations. This is performed recursively over \( L \) layers, with the representation at layer \( l \) updated as:
+\begin{equation}
+    e_h^{(l)} = f(e_h^{(l-1)}, e_{N_h}^{(l-1)})
+\end{equation}
+Where \( e_{N_h}^{(l-1)} = \sum_{(h, r, t) \in N_h} \pi(h, r, t) e_t^{(l-1)} \).
+From the updated representations, predict the interaction probability between user \( u \) and course \( c \).
+
+Combine representations from all propagation layers:
+\begin{equation}
+    e_u^* = e_u^{(0)} || \cdots || e_u^{(L)}, \quad e_i^* = e_i^{(0)} || \cdots || e_i^{(L)}
+\end{equation}
+
+Where \( || \) denotes vector concatenation, producing a longer composite vector.
+
+Use the inner product to compute the score:
+\begin{equation}
+    \hat{y}(u, i) = e_u^{*\top} e_i^*
+\end{equation}
+This value represents the compatibility level between user \( u \) and course \( c \).
+
+KGAT employs two primary loss components: the Collaborative Filtering Loss, formulated using Bayesian Personalized Ranking (BPR) loss:
+\begin{equation}
+    L_{CF} = \sum_{(u, i, j) \in O} -\ln \sigma(\hat{y}(u, i) - \hat{y}(u, j))
+\end{equation}
+Where \( O = \{(u, i, j) | (u, i) \in I, (u, j) \notin I\} \), and \( I \) is the set of known user-item interactions.
+And \( L_{KG} \) to compute the total loss function:
+\begin{equation}
+    L_{KGAT} = L_{KG} + L_{CF} + \lambda \| \Theta \|_2^2
+\end{equation}
+Where \( \Theta = \{E, W_r, \forall r \in R, W_1^{(l)}, W_2^{(l)}, \forall l \in \{1, \cdots, L\}\} \) is the set of parameters, and \( \lambda \) is the regularization coefficient.
+
+Additionally, mini-batch Adam with alternating optimization is used to ensure efficient training on large datasets.
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=2\columnwidth]{imgs/details_of_KGAT.png}
+\caption{Details architecture of KGAT}
+\label{fig:details_of_KGAT}
+\end{figure*}
+
+
+\section{Experiments}
+\label{sec:experiments}
+
+The source code, datasets, and supplementary materials of this study are available on GitHub HetGNN-KGAT-for-EduPath \footnote{ \url{https://github.com/datachain-uit/HetGNN-KGAT-for-EduPath}}
+
+\subsection{Evaluation Metrics}
+
+To comprehensively assess both the quality of the input data and the effectiveness of the recommendation models, we group the evaluation metrics into three categories: \textit{Direct Data Quality Metrics}, \textit{Indirect Data Quality Metrics}, and \textit{Overall System Performance}.
+
+\subsubsection{Direct Data Quality Metrics}
+\label{subsubsec:direct DQ}
+The quality of the input data is a critical factor influencing the effectiveness of machine learning models. To quantify the cleanliness, completeness, and validity of the dataset before training the recommendation model, we use two direct data quality metrics: completeness and consistency \cite{nguyen2025data_quality}.
+
+\paragraph*{Completeness}
+
+The completeness metric \cite{nguyen2025data_quality} reflects the extent of data completeness, specifically the proportion of non-missing values across the entire dataset. A higher completeness value indicates less missing data, thereby increasing the reliability of model training.
+
+Defining completeness for a single object:
+\begin{equation}
+    \text{Completeness}_{\text{object}} = \frac{|\{a_i \in A \mid a_i \neq \text{NaN} \land a_i \neq \text{None}\}|}{|A|}
+\end{equation}
+
+\begin{itemize}
+    \item \( A = \{a_1, a_2, \ldots, a_n\} \) is the set containing all values of an object.
+    \item \( a_i \) is the value of the \( i \)-th attribute.
+    \item \( |A| \) is the total number of attributes.
+    \item The numerator counts the number of attributes that are neither \(\text{NaN}\) nor \(\text{None}\).
+\end{itemize}
+
+Defining completeness for the entire dataset as the average completeness across all objects over \( N \) total objects:
+\begin{equation}
+\text{Completeness}_{\text{dataset}} = \frac{1}{N} \sum_{j=1}^{N} \text{Completeness}_{\text{object}_j}
+\end{equation}
+
+
+\paragraph*{Consistency}
+
+The consistency metric \cite{nguyen2025data_quality} measures the extent to which the data adheres to predefined validity rules. A record is considered "valid" if it violates none of the validation rules from the following groups: value domain, non-null data, data type, logical constraints, uniqueness, and foreign key integrity.
+
+Defining consistency for a single object:
+\begin{equation}
+\text{Consistency}_{\text{object}} = \frac{|\{c_j \in C \mid \text{isValid}(c_j) = \text{True}\}|}{|C|}
+\end{equation}
+
+
+\begin{itemize}
+    \item \( C = \{c_1, c_2, \ldots, c_m\} \) is the set containing all constraints applied to an object.
+    \item \(\text{isValid}(c_j)\) is a function that checks the constraint \( c_j \) on the object (returns \(\text{True}\) if the constraint holds).
+    \item \( |C| \) is the total number of constraints.
+\end{itemize}
+
+Types of constraints:
+\begin{itemize}
+    \item Domain Range: \( a_i \in [v_{\text{min}}, v_{\text{max}}] \)
+    \item Non-null: \( a_i \neq \text{null} \)
+    \item Data Type: \( a_i \in \text{type}(a_i) \)
+    \item Logical Constraints: \( a_i \) satisfies the logical condition \( a_i > a_j \)
+    \item Uniqueness: \( a_i \notin \text{duplicates}(A) \)
+    \item Foreign Key Integrity: \( a_i \in \text{ReferenceTable} \)
+\end{itemize}
+
+Defining consistency for the entire dataset as the average consistency across all objects over \( N \) total objects:
+\begin{equation}
+\text{Consistency}_{\text{dataset}} = \frac{1}{N} \sum_{j=1}^{N} \text{Consistency}_{\text{object}_j}
+\end{equation}
+
+Specific validation criteria are described as follows:\\
+Domain Range: Values must fall within specified ranges or sets to ensure data validity.
+
+\begin{itemize}
+    \item Column \textit{user\_gender} belongs to the set \{0, 1, 2\}.
+    \item \textit{user\_id} starts with "U\_", \textit{course\_id} starts with "C\_".
+    \item \textit{enroll\_time} $\in [2019, 2020]$ (within the data collection timeframe).
+    \item Columns: \textit{total\_course\_comments},\linebreak \textit{user\_course\_num\_comment}, \textit{user\_course\_num\_replies} must be non-negative integers ($\ge 0$).
+    \item Columns in list format such as: \textit{num\_problem}, \textit{num\_correct\_problem}, \textit{video\_duration}, \linebreak\textit{actual\_watch\_time}, \textit{total\_watch\_time} are lists of non-negative numbers.
+\end{itemize}
+
+Non-null Data: Essential columns must have values to ensure completeness of critical data.
+\begin{itemize}
+    \item \textit{user\_id}, \textit{course\_id}, \textit{school\_id}, \textit{teacher\_id}, \textit{course\_field} must not be empty.
+\end{itemize}
+
+Data Type: Data must conform to specified types to ensure proper processing and analysis.
+\begin{itemize}
+    \item \textit{enroll\_time}: Unix timestamp (int) type.
+    \item \textit{user\_gender}, \textit{total\_course\_comments}, \\\textit{user\_course\_num\_comment}, \textit{user\_course\_num\_replies}: int type.
+    \item \textit{user\_id}, \textit{course\_id}, \textit{course\_name}, \textit{course\_prerequisites}, \textit{course\_about}: string type.
+    \item Fields like \textit{school\_id}, \textit{teacher\_id}, \textit{video\_id}, \textit{ccid}, \textit{watch\_id}, \textit{exercise\_id}, \textit{concept\_id}, \textit{concept\_prerequisite}, \dots: list type of strings.
+\end{itemize}
+
+Logical Constraints: Data must satisfy logical rules to maintain coherence and correctness.
+\begin{itemize}
+    \item \textit{actual\_watch\_time} $\le$ \textit{total\_watch\_time}.
+    \item \textit{actual\_watch\_time} $\le$ \textit{video\_duration}.
+    \item \textit{user\_course\_num\_comment} + \textit{user\_course\_num\_replies} $\le$ \textit{total\_course\_comments}.
+    \item Each \textit{concept\_id} must not be in its corresponding \textit{concept\_prerequisite} list (avoiding loops).
+    \item \textit{num\_correct\_problem} $\le$ \textit{num\_problem}.
+\end{itemize}
+
+Uniqueness: Data entries must be unique to prevent duplication and ensure data integrity.
+\begin{itemize}
+    \item The pair (\textit{user\_id}, \textit{course\_id}) is unique in the dataset ensuring a learner does not appear twice with the same course.
+    \item Check for duplicate records: both with all attributes and excluding primary keys (\textit{user\_id}, \textit{course\_id}).
+\end{itemize}
+
+Foreign Key Integrity: Each value in the ID columns must exist in the original MOOCCubeX data files:
+
+\begin{table}[H]
+\centering
+\caption{Foreign key validation with MOOCCubeX entity files}
+\scalebox{0.75}{
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Column in dataset} & \textbf{Reference file} & \textbf{Notes} \\
+\hline
+\texttt{user\_id} & \texttt{user.json} & List of learners \\
+\texttt{course\_id} & \texttt{course.json} & List of courses \\
+\texttt{school\_id} & \texttt{school.json} & Schools offering courses \\
+\texttt{teacher\_id} & \texttt{teacher.json} & Instructors teaching courses \\
+\texttt{concept\_id} & \texttt{concept.json} & Set of knowledge concepts \\
+\texttt{exercise\_id} & \texttt{exercise-problem.json} & Set of exercises \\
+\texttt{ccid} & \texttt{video\_id-ccid.txt} & Mapping between videos and concepts \\
+\hline
+\end{tabular}
+}
+\end{table}
+
+\subsubsection{Indirect Data Quality Metrics}
+
+The quality of data can be indirectly assessed through the performance effectiveness of machine learning models utilizing that data. In the context of recommendation systems, the following metrics reflect the reliability and relevance of recommendation outcomes when input data is processed using different preproccessing strategies similar to \cite{nguyen2025data_quality, nguyen2024hbert4rec}.
+
+\paragraph*{Reliability}
+
+The reliability of recommendation results is measured using the Mean Average Precision (MAP) metric, which reflects the overall ranking accuracy across all users.
+
+For each user \( u \in U \), Average Precision (AP) is defined as:
+
+\begin{equation}
+AP_u = \frac{1}{|R_u|} \sum_{k=1}^{N} P@k \cdot \mathbb{I}(r_k \in R_u)
+\end{equation}
+
+Where:
+\begin{itemize}
+    \item \( R_u \) is the set of correct target items to recommend for user \( u \),
+    \item \( r_k \) is the recommended item at position \( k \),
+    \item \( P@k \) is the precision at position \( k \),
+    \item \( \mathbb{I}(\cdot) \) is an indicator function, equal to 1 if true, 0 if false.
+\end{itemize}
+
+The MAP value across all users is calculated as:
+
+\begin{equation}
+MAP = \frac{1}{|U|} \sum_{u \in U} AP_u
+\end{equation}
+
+\paragraph*{Relevance}
+
+The relevance of recommended items is measured using three common metrics:
+
+\begin{itemize}
+    \item Precision@K: The proportion of recommended items within the top-$K$ that are correct:
+
+    \begin{equation}
+    Precision@K = \frac{|R_u \cap \hat{R}_u^K|}{K}
+    \end{equation}
+
+    \item Recall@K: The proportion of correct items recommended by the model:
+
+    \begin{equation}
+    Recall@K = \frac{|R_u \cap \hat{R}_u^K|}{|R_u|}
+    \end{equation}
+
+    \item Normalized Discounted Cumulative Gain (NDCG@K): Considers the position of correct items in the recommendation list. Specifically, NDCG at position \( K \) is calculated as:
+
+    \begin{equation}
+    NDCG@K = \frac{DCG@K}{IDCG@K}
+    \end{equation}
+
+    Where:
+    \begin{equation}
+    DCG@K = \sum_{i=1}^{K} \frac{rel_i}{\log_2(i + 1)},
+    \end{equation}
+    \(IDCG@K = \text{ideal DCG value with the optimal order}\)
+
+    with \( rel_i \in \{0,1\} \) being the binary relevance of the item at position \( i \).
+\end{itemize}
+
+These metrics are computed with \( K = 5 \) and \( K = 10 \) to evaluate effectiveness in realistic top-$K$ recommendation scenarios.
+
+\subsubsection{Overall System Performance}
+
+To concisely and comprehensively summarize the accuracy of the recommendation system, we use the F1-score metric—the harmonic mean of Precision and Recall:
+
+\begin{equation}
+F1 = 2 \cdot \frac{Precision \cdot Recall}{Precision + Recall}
+\end{equation}
+
+The F1-score balances coverage and precision, making it particularly useful in cases of uneven data distribution or when evaluating the model’s ability to recommend important items without missing too many correct targets.
+
+\subsection{Experimental Methodology}
+
+\subsubsection{Experimental Objectives}
+
+The objective of the experimental section is to evaluate the effectiveness of the proposed HetGNN-KGAT method in handling sparse data and providing recommendations on the MOOCCubeX dataset \cite{yu2021mooccubex}. The experiments focus on:
+\begin{itemize}
+    \item Comparing the effectiveness of four imputation strategies (listwise deletion, statistical imputation, machine learning-based imputation with KNN, and \textbf{HetGNN}) in improving data quality.
+    \item Evaluating the performance of five recommendation models (CBF, DeepFM, BPRMF, UPGPR, \textbf{KGAT}) on imputed data.
+    \item Assessing the performance of recommendation models in simulated scenarios with limited test data and real-world scenarios.
+\end{itemize}
+The experiments are designed with a combination of imputation strategies, recommendation models, and evaluation strategies to thoroughly explore the effectiveness of HetGNN-KGAT, as detailed in Table \ref{tab:preprocessing_baseline_models}.
+
+\subsubsection{Experimental Data}
+
+The experiments focus on the MOOCCubeX dataset \cite{yu2021mooccubex}, a rich dataset from the XuetangX online learning platform, with detailed descriptions provided in Section \ref{sec:proposed_method}. Due to computational resource limitations and to focus on meaningful data, we applied a targeted filtering process as follows: first, selecting courses with video or exercise resources; next, removing experimental courses; then retaining only learners who actively interacted with resources, excluding those with excessively high enrollment counts; and finally keeping only courses and learners with at least five connections. The resulting filtered dataset comprises approximately 335,587 interactions from 24,068 learners and 2,539 courses, with 34 attributes describing learner behaviors, course content, platform context, and temporal characteristics, as shown in Table \ref{tab:filtered_data_overview}.
+
+\begin{table}[H]
+\centering
+\caption{Overview of the filtered dataset}
+\label{tab:filtered_data_overview}
+\renewcommand{\arraystretch}{1.2}
+\scalebox{0.8}{
+\begin{tabular}{|l|c|}
+\hline
+\textbf{Metric} & \textbf{Value} \\
+\hline
+Number of columns & 34 \\
+Number of rows & 335,587 \\
+Number of users & 24,068 \\
+Number of courses & 2,539 \\
+Number of schools & 398 \\
+Number of teachers & 8,454 \\
+Number of fields & 77 \\
+Number of videos & 54,972 \\
+Number of exercises & 53,311 \\
+Number of concepts & 214,057 \\
+\hline
+\end{tabular}
+}
+% \vspace{-2.2em}
+\end{table}
+
+The data is split using a leave-one-out temporal splitting strategy \cite{he2017neural}, where:
+the training set includes all prior course interactions for each learner;
+the test set contains the latest course interaction for each learner, reflecting a realistic sequential recommendation context \cite{kang2018self_attentive, tang2018personalized}.
+This approach ensures temporal order preservation, accurately simulating dynamic real-world recommendation scenarios.
+
+\subsubsection{Imputation Strategies}
+
+Four strategies are applied to handle sparse data in MOOCCubeX:
+
+Listwise Deletion: Removes columns with a missing rate above 50\%, followed by deleting rows containing null values. This method retains clean data but may significantly reduce dataset size.
+
+Statistical Imputation: Replaces missing values with the mean for numerical columns (e.g., \textit{total\_watch\_time}) and the mode for categorical columns (e.g., \textit{course\_field}). This approach is simple but may introduce bias if data is unevenly distributed.
+
+Machine Learning-based Imputation (KNN): Utilizes the K-Nearest Neighbors (KNN) algorithm based on cosine similarity \cite{troyanskaya2001missingDNA}. The process includes:
+        \begin{itemize}
+            \item Natural Language Processing (NLP) with tokenization and lemmatization using tools like NLTK for text data (e.g., course descriptions).
+            \item Encoding data into feature embeddings using the Sentence Transformer model.
+            \item Predicting missing values based on the nearest neighbors (k=3) using cosine distance.
+        \end{itemize}
+        This method leverages semantic relationships, making it suitable for complex data like MOOCCubeX.
+        
+HetGNN: As described in Section \ref{sec:proposed_method}, HetGNN is implemented with two convolution layers to learn node representations from a heterogeneous graph, imputing missing relationships and attributes based on neighbor and content information.
+
+\subsubsection{Baseline Models and Detailed Implementation}
+
+\begin{table}[H]
+\centering
+\caption{Preprocessing strategies and baseline models}
+\label{tab:preprocessing_baseline_models}
+\renewcommand{\arraystretch}{1.1}
+\footnotesize
+\scalebox{0.7}{ 
+\begin{tabular}{lllllccccc}
+\hline
+\multicolumn{1}{|l|}{\multirow{2}{*}{}} & \multicolumn{4}{c|}{\textbf{Preprocessing}} & \multicolumn{5}{c|}{\textbf{Model}} \\ \cline{2-10}
+\multicolumn{1}{|l|}{} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}LD\\ \cite{Rubin2019statistical_analysis_missing_data}\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}SI\\ \cite{van2011mice}\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}MLI\\ \cite{troyanskaya2001missingDNA}\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}HetGNN\\ \cite{zhang2019hetgnn}\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}CBF\\ \cite{achakulvisut2016science}\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}DeepFM\\ \cite{guo2017deepfm}\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}BPRMF\\ \cite{rendle2012bprmf}\end{tabular}} & \begin{tabular}[c]{@{}c@{}}UPGPR\\ \cite{frej2024upgpr}\end{tabular} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}KGAT\\ \cite{wang2019kgat}\end{tabular}} \\ \hline
+\multicolumn{1}{|c|}{RM-1} & \multicolumn{1}{c|}{$\checkmark$} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{c|}{$\checkmark$} & \multicolumn{1}{c|}{$\checkmark$} & \multicolumn{1}{c|}{$\checkmark$} & \multicolumn{1}{c|}{$\checkmark$} & \multicolumn{1}{c|}{$\checkmark$} \\ \hline
+\multicolumn{1}{|c|}{RM-2} & \multicolumn{1}{l|}{} & \multicolumn{1}{c|}{$\checkmark$} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{c|}{$\checkmark$} & \multicolumn{1}{c|}{$\checkmark$} & \multicolumn{1}{c|}{$\checkmark$} & \multicolumn{1}{c|}{$\checkmark$} & \multicolumn{1}{c|}{$\checkmark$} \\ \hline
+\multicolumn{1}{|c|}{RM-3} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{c|}{$\checkmark$} & \multicolumn{1}{l|}{} & \multicolumn{1}{c|}{$\checkmark$} & \multicolumn{1}{c|}{$\checkmark$} & \multicolumn{1}{c|}{$\checkmark$} & \multicolumn{1}{c|}{$\checkmark$} & \multicolumn{1}{c|}{$\checkmark$} \\ \hline
+\multicolumn{1}{|c|}{RM-4} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{c|}{$\checkmark$} & \multicolumn{1}{c|}{$\checkmark$} & \multicolumn{1}{c|}{$\checkmark$} & \multicolumn{1}{c|}{$\checkmark$} & \multicolumn{1}{c|}{$\checkmark$} & \multicolumn{1}{c|}{$\checkmark$} \\ \hline
+\multicolumn{1}{|c|}{\begin{tabular}[c]{@{}c@{}}HetGNN\\ -KGAT\end{tabular}} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{c|}{$\checkmark$} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{c|}{$\checkmark$} \\ \hline
+\multicolumn{10}{l}{* RM represents Reference Model.} \\
+\multicolumn{10}{l}{* LD represents Listwise-Deletion.} \\
+\multicolumn{10}{l}{* SI represents Statistical Imputation.} \\
+\multicolumn{10}{l}{* MLI represents Machine Learning based Imputation.}
+\end{tabular}
+} % Close scalebox
+% \vspace{-2.5em}
+\end{table}
+
+To evaluate the effectiveness of the HetGNN-KGAT method, experiments are conducted comparing it with four baseline recommendation models: CBF \cite{achakulvisut2016science}, BPR-MF \cite{rendle2012bprmf}, DeepFM \cite{guo2017deepfm}, and UPGPR \cite{frej2024upgpr}, as shown in Table~\ref{tab:preprocessing_baseline_models}.
+
+The key components of UPGPR \cite{frej2024upgpr} during implementation are summarized as follows:
+
+\begin{itemize}
+    \item Environment: KG from entities (learners, courses) and relationships (enrollment, teaching).
+    
+    \item State: Current node representation vector (from HetGNN) combined with path history, encoded using LSTM.
+    
+    \item Action: Selecting the next relationship and node to traverse on the KG.
+    
+    \item Reward: Binary (1 if a path exceeding one step ends at an enrolled course, 0 otherwise).
+    
+    \item Policy: Neural network (MLP/LSTM) trained with RL (REINFORCE) to maximize the reward.
+\end{itemize}
+
+The implementation process of UPGPR \cite{frej2024upgpr} includes:
+\begin{enumerate}
+    \item Constructing a HIN from the data, enriched by HetGNN.
+    \item Training the KG with embeddings (TransE).
+    \item Training the RL agent on the HIN, optimized over 50 epochs.
+    \item Testing by generating and filtering recommendation paths.
+\end{enumerate}
+
+\textbf{Detailed Configurations for Imputation Models}:
+
+KNN: The number of neighbors is set to 3, with the cosine similarity used as the distance metric.
+
+HetGNN: The hidden channel size is configured to 32, the learning rate is set to \(10^{-4}\), and the Adam optimizer is employed.
+
+
+\textbf{Detailed Configurations for Recommendation Models}:
+      
+    CBF: Stemming is enabled, the n-gram range is set to (1, 2), TF-IDF is used for feature weighting, and the number of components is reduced to 500 using dimensionality reduction techniques.
+    
+    BPR-MF: The embedding size is set to 32, the model is trained for 120 epochs with a learning rate of \(10^{-4}\), learning rate decay is disabled, the regularization coefficient is \(10^{-5}\), and one negative sample per positive instance is used with random sampling.
+    
+    DeepFM: The embedding size is configured to 16, with 50 training epochs and a learning rate of \(10^{-4}\). Learning rate decay and batch normalization are not applied. No dropout is used, and the hidden layers are set to (128, 64, 32) units. Negative sampling is applied with one negative sample per positive instance, using random sampling.
+        
+    UPGPR: The embedding dimension is set to 64, with a maximum path length of 5. The knowledge graph is trained for 30 epochs, and the agent is trained for 50 epochs using the Adam optimizer with a learning rate of \(10^{-3}\). Early stopping is applied with a patience threshold of 10 epochs.
+        
+    KGAT: is configured with an embedding dimension of 64 and graph convolution layers of sizes 64, 32, and 16, respectively. The model employs the bi-interaction aggregation strategy to capture richer feature interactions and utilizes the random-walk Laplacian for graph propagation. A message dropout rate of 0.1 is applied uniformly across all convolution layers to mitigate overfitting. Both the knowledge graph and collaborative filtering regularization coefficients are set to \(10^{-5}\)  to control model complexity. The learning rate is configured at \(10^{-4}\) , and the model is trained for 350 epochs with early stopping applied, using a patience threshold of 7 epochs. The Adam optimizer is employed for efficient parameter updates throughout training.
+
+
+\subsubsection{Evaluation Scenarios}
+
+We evaluate the performance of the proposed method in two distinct scenarios to assess its adaptability to different MOOC conditions \cite{rendle2012bprmf, he2017neural}:
+\begin{enumerate}
+    \item Limited Test Set (Negatively Sampled Targets): Each test item is evaluated alongside 100 diverse negative course options, reflecting typical candidate-limited scenarios in recommendation frameworks \cite{koren2008factorization, cremonesi2010performance}. This setup may lead to higher performance estimates due to the simplified ranking task \cite{jannach2020recommender}.
+    \item Full Test Set: Each test item is ranked among all unseen courses (over 5,000 on XuetangX as in \cite{kizilcec2015attrition_missing_MOOC}), reflecting real-world challenges on large-scale platforms like YouTube \cite{covington2016youtube}. This scenario tests scalability and typically results in a 2- to 3-fold reduction in metrics like Recall@K \cite{jannach2020recommender}.
+\end{enumerate}
+The goal of using these two different setups is to gain a practical and comprehensive insight into the effectiveness of the recommendations. This includes evaluating performance in the context of large-scale data, characteristic of real MOOC environments (represented by the full test set scenario), as well as in simulated contexts with a smaller candidate set for recommendations (represented by the limited test set scenario).
+
+\subsection{Experimental Results}
+
+\subsubsection{Data Quality}
+
+\paragraph{Direct Evaluation}
+This section presents the experimental results on direct data quality evaluation of the MOOCCubeX dataset \cite{yu2021mooccubex}, focusing on two key metrics as defined in the previous content of this section \ref{sec:experiments}: Completeness and Consistency \cite{nguyen2025data_quality}. The results are summarized in Table \ref{tab:direct_dataquality_results}, reflecting the effectiveness of imputation methods compared to the raw unprocessed data.
+
+\begin{table}[]
+\centering
+\caption{Experimental results of direct data quality metrics for imputation methods}
+\label{tab:direct_dataquality_results}
+\begin{tabular}{|l|cc|}
+\hline
+\multicolumn{1}{|c|}{\multirow{2}{*}{\textbf{Dataset}}} & \multicolumn{2}{c|}{\textbf{Direct Evaluation}} \\ \cline{2-3} 
+\multicolumn{1}{|c|}{} & \multicolumn{1}{c|}{\textbf{Completeness}} & \textbf{Consistency} \\ \hline
+V1 (None) & \multicolumn{1}{c|}{69.94\%} & 87.78\% \\ \hline
+V2 (Listwise - deletion) & \multicolumn{1}{c|}{100\%} & 100\% \\ \hline
+V3 (Statistical imputation) & \multicolumn{1}{c|}{100\%} & 100\% \\ \hline
+V4 (ML based imputation) & \multicolumn{1}{c|}{100\%} & 100\% \\ \hline
+\textbf{V5 (HetGNN imputation)} & \multicolumn{1}{c|}{100\%} & 100\% \\ \hline
+\end{tabular}
+\end{table}
+
+The raw unprocessed data (V1 - None) shows a Completeness of 69.94\%, reflecting severe sparsity in MOOCCubeX, particularly for attributes like \textit{watch\_id} (99.94\% missing) and \textit{course\_field} (73.12\% missing). Simultaneously, Consistency reaches 87.78\%, indicating some data violations of validity rules (primarily the non-null data rule). These figures confirm that the initial data is inadequate for direct use in a recommendation system and requires imputation strategies to enhance quality.
+
+After applying imputation methods—Listwise Deletion (V2), Statistical Imputation (V3), Machine Learning-based Imputation with KNN (V4), and HetGNN Imputation (V5) both Completeness and Consistency reach 100\% across all data versions. This result demonstrates that the methods successfully handle missing values and ensure compliance with predefined validity rules. Listwise Deletion achieves 100\% by removing columns and rows with null values, though this may significantly reduce dataset size, risking the loss of critical information. Statistical Imputation uses mean and mode to fill missing values, offering immediate effectiveness but potentially introducing bias if data distribution is uneven, especially for columns like \textit{total\_watch\_time}. ML-based Imputation (KNN) leverages cosine similarity and Sentence Transformer embeddings, providing complete data while preserving context, suitable for text data like course descriptions. HetGNN Imputation, based on the two-layer convolution architecture described in Section \ref{sec:proposed_method}, not only imputes missing data but also enriches it by learning representations from a heterogeneous graph structure, promising better quality compared to other methods.
+
+However, all four methods achieving 100\% for Completeness and Consistency is insufficient to determine the optimal imputation method for the recommendation system. The reason is that direct metrics only reflect the surface state of the data (completeness and validity) without evaluating their practical impact on model performance, such as recommendation accuracy or relevance. Differences in imputation approaches may lead to variations in learned features, affecting the output quality of recommendation models like KGAT or UPGPR.
+Therefore, further experiments are needed to comprehensively evaluate data quality indirectly through the effectiveness of recommendation models (CBF, DeepFM, BPRMF, UPGPR, KGAT) on versions V2, V3, V4, and V5, using metrics like MAP, Precision@K, Recall@K, and NDCG@K, and analyzing overall performance with F1-score to identify the imputation method producing the most suitable input data.
+These results will provide a scientific basis for selecting the optimal strategy, while clarifying the role of HetGNN in enhancing data quality for the HetGNN-KGAT system on MOOCCubeX.
+
+\paragraph{Indirect Evaluation}
+
+This section presents the experimental results on indirect data quality of the MOOCCubeX dataset \cite{yu2021mooccubex}, using the Reliability and Relevance metrics defined in the previous content of this section \ref{sec:experiments} \cite{nguyen2025data_quality, nguyen2024hbert4rec}. The results are summarized in Table \ref{tab:indirect_dataquality_and_performance_results}, reflecting the effectiveness of recommendation models (CBF, BPRMF, DeepFM, UPGPR, KGAT) across four imputation methods corresponding to V2, V3, V4, and V5 in two scenarios: simulated with a limited test set (-100neg) and real world (-Real).
+
+\begin{sidewaystable}
+\centering
+\caption{Experimental results of indirect data quality metrics and overall performance of imputation methods and recommendation models}
+\label{tab:indirect_dataquality_and_performance_results}
+\scalebox{0.65}{ 
+\begin{tabular}{|c| c c c c c c c c c c c c c c c c c |c c c c|}
+\hline
+ &
+  \multicolumn{17}{c|}{\textbf{Indirect Evaluation}} &
+  \multicolumn{4}{c|}{} \\ \cline{2-18}
+ &
+  \multicolumn{1}{c|}{} &
+  \multicolumn{4}{c|}{Reliability} &
+  \multicolumn{12}{c|}{Relevance} &
+  \multicolumn{4}{c|}{\multirow{-2}{*}{\textbf{Performance}}} \\ \cline{3-22} 
+ &
+  \multicolumn{1}{c|}{} &
+  \multicolumn{1}{c|}{\textit{\begin{tabular}[c]{@{}c@{}}Top5\\ -100neg\end{tabular}}} &
+  \multicolumn{1}{c|}{\textit{\begin{tabular}[c]{@{}c@{}}Top10\\ -100neg\end{tabular}}} &
+  \multicolumn{1}{c|}{\textit{\begin{tabular}[c]{@{}c@{}}Top5\\ -Real\end{tabular}}} &
+  \multicolumn{1}{c|}{\textit{\begin{tabular}[c]{@{}c@{}}Top10\\ -Real\end{tabular}}} &
+  \multicolumn{3}{c|}{\textit{Top5-100neg}} &
+  \multicolumn{3}{c|}{\textit{Top10-100neg}} &
+  \multicolumn{3}{c|}{\textit{Top5-Real}} &
+  \multicolumn{3}{c|}{\textit{Top10-Real}} &
+  \multicolumn{1}{c|}{\textit{\begin{tabular}[c]{@{}c@{}}Top5\\ -100neg\end{tabular}}} &
+  \multicolumn{1}{c|}{\textit{\begin{tabular}[c]{@{}c@{}}Top10\\ -100neg\end{tabular}}} &
+  \multicolumn{1}{c|}{\textit{\begin{tabular}[c]{@{}c@{}}Top5\\ -Real\end{tabular}}} &
+  \multicolumn{1}{c|}{\textit{\begin{tabular}[c]{@{}c@{}}Top10\\ -Real\end{tabular}}} \\ \cline{3-22} 
+\multirow{-4}{*}{\textbf{Dataset}} &
+  \multicolumn{1}{c|}{\multirow{-3}{*}{Baseline}} &
+  \multicolumn{1}{c|}{\textit{MAP}} &
+  \multicolumn{1}{c|}{\textit{MAP}} &
+  \multicolumn{1}{c|}{\textit{MAP}} &
+  \multicolumn{1}{c|}{\textit{MAP}} &
+  \multicolumn{1}{c|}{\textit{Precision}} &
+  \multicolumn{1}{c|}{\textit{Recall}} &
+  \multicolumn{1}{c|}{\textit{NDCG}} &
+  \multicolumn{1}{c|}{\textit{Precision}} &
+  \multicolumn{1}{c|}{\textit{Recall}} &
+  \multicolumn{1}{c|}{\textit{NDCG}} &
+  \multicolumn{1}{c|}{\textit{Precision}} &
+  \multicolumn{1}{c|}{\textit{Recall}} &
+  \multicolumn{1}{c|}{\textit{NDCG}} &
+  \multicolumn{1}{c|}{\textit{Precision}} &
+  \multicolumn{1}{c|}{\textit{Recall}} &
+  \multicolumn{1}{c|}{\textit{NDCG}} &
+  \multicolumn{1}{c|}{\textit{F1-score}} &
+  \multicolumn{1}{c|}{\textit{F1-score}} &
+  \multicolumn{1}{c|}{\textit{F1-score}} &
+  \multicolumn{1}{c|}{\textit{F1-score}} \\ \hline
+\multicolumn{1}{|c|}{} &
+  \multicolumn{1}{c|}{CBF} &
+  \multicolumn{1}{c|}{17.02} &
+  \multicolumn{1}{c|}{17.91} &
+  \multicolumn{1}{c|}{2.17} &
+  \multicolumn{1}{c|}{2.55} &
+  \multicolumn{1}{c|}{4.83} &
+  \multicolumn{1}{c|}{24.17} &
+  \multicolumn{1}{c|}{18.80} &
+  \multicolumn{1}{c|}{3.09} &
+  \multicolumn{1}{c|}{30.91} &
+  \multicolumn{1}{c|}{20.97} &
+  \multicolumn{1}{c|}{1.13} &
+  \multicolumn{1}{c|}{5.64} &
+  \multicolumn{1}{c|}{3.03} &
+  \multicolumn{1}{c|}{0.85} &
+  \multicolumn{1}{c|}{8.52} &
+  \multicolumn{1}{c|}{3.95} &
+  \multicolumn{1}{c|}{8.06} &
+  \multicolumn{1}{c|}{5.62} &
+  \multicolumn{1}{c|}{1.88} &
+  \multicolumn{1}{c|}{1.55} \\ \cline{2-22} 
+\multicolumn{1}{|c|}{} &
+  \multicolumn{1}{c|}{BPRMF} &
+  \multicolumn{1}{c|}{20.93} &
+  \multicolumn{1}{c|}{22.85} &
+  \multicolumn{1}{c|}{2.11} &
+  \multicolumn{1}{c|}{2.53} &
+  \multicolumn{1}{c|}{7.20} &
+  \multicolumn{1}{c|}{36.00} &
+  \multicolumn{1}{c|}{24.66} &
+  \multicolumn{1}{c|}{5.04} &
+  \multicolumn{1}{c|}{50.40} &
+  \multicolumn{1}{c|}{29.31} &
+  \multicolumn{1}{c|}{0.84} &
+  \multicolumn{1}{c|}{4.19} &
+  \multicolumn{1}{c|}{2.62} &
+  \multicolumn{1}{c|}{0.74} &
+  \multicolumn{1}{c|}{7.39} &
+  \multicolumn{1}{c|}{3.64} &
+  \multicolumn{1}{c|}{12.00} &
+  \multicolumn{1}{c|}{9.16} &
+  \multicolumn{1}{c|}{1.40} &
+  \multicolumn{1}{c|}{1.34} \\ \cline{2-22} 
+\multicolumn{1}{|c|}{} &
+  \multicolumn{1}{c|}{DeepFM} &
+  \multicolumn{1}{c|}{27.97} &
+  \multicolumn{1}{c|}{29.96} &
+  \multicolumn{1}{c|}{3.33} &
+  \multicolumn{1}{c|}{3.97} &
+  \multicolumn{1}{c|}{9.23} &
+  \multicolumn{1}{c|}{46.17} &
+  \multicolumn{1}{c|}{32.48} &
+  \multicolumn{1}{c|}{6.11} &
+  \multicolumn{1}{c|}{61.06} &
+  \multicolumn{1}{c|}{37.31} &
+  \multicolumn{1}{c|}{1.26} &
+  \multicolumn{1}{c|}{6.31} &
+  \multicolumn{1}{c|}{4.07} &
+  \multicolumn{1}{c|}{1.12} &
+  \multicolumn{1}{c|}{11.16} &
+  \multicolumn{1}{c|}{5.62} &
+  \multicolumn{1}{c|}{15.39} &
+  \multicolumn{1}{c|}{11.10} &
+  \multicolumn{1}{c|}{2.10} &
+  \multicolumn{1}{c|}{2.03} \\ \cline{2-22} 
+\multicolumn{1}{|c|}{} &
+  \multicolumn{1}{c|}{UPGPR} &
+  \multicolumn{1}{c|}{29.23} &
+  \multicolumn{1}{c|}{29.67} &
+  \multicolumn{1}{c|}{6.49} &
+  \multicolumn{1}{c|}{7.20} &
+  \multicolumn{1}{c|}{8.02} &
+  \multicolumn{1}{c|}{40.09} &
+  \multicolumn{1}{c|}{31.95} &
+  \multicolumn{1}{c|}{4.32} &
+  \multicolumn{1}{c|}{43.19} &
+  \multicolumn{1}{c|}{32.98} &
+  \multicolumn{1}{c|}{2.36} &
+  \multicolumn{1}{c|}{11.78} &
+  \multicolumn{1}{c|}{7.80} &
+  \multicolumn{1}{c|}{1.72} &
+  \multicolumn{1}{c|}{17.18} &
+  \multicolumn{1}{c|}{9.54} &
+  \multicolumn{1}{c|}{13.36} &
+  \multicolumn{1}{c|}{7.85} &
+  \multicolumn{1}{c|}{3.93} &
+  \multicolumn{1}{c|}{3.12} \\ \cline{2-22} 
+\multicolumn{1}{|c|}{\multirow{-5}{*}{\begin{tabular}[c]{@{}c@{}}V2 \\ (Listwise -\\ deletion)\end{tabular}}} &
+  \multicolumn{1}{c|}{KGAT} &
+  \multicolumn{1}{c|}{36.75} &
+  \multicolumn{1}{c|}{38.70} &
+  \multicolumn{1}{c|}{7.72} &
+  \multicolumn{1}{c|}{8.39} &
+  \multicolumn{1}{c|}{11.18} &
+  \multicolumn{1}{c|}{55.88} &
+  \multicolumn{1}{c|}{41.50} &
+  \multicolumn{1}{c|}{7.05} &
+  \multicolumn{1}{c|}{70.45} &
+  \multicolumn{1}{c|}{46.21} &
+  \multicolumn{1}{c|}{2.63} &
+  \multicolumn{1}{c|}{13.12} &
+  \multicolumn{1}{c|}{9.06} &
+  \multicolumn{1}{c|}{1.83} &
+  \multicolumn{1}{c|}{18.20} &
+  \multicolumn{1}{c|}{10.69} &
+  \multicolumn{1}{c|}{18.63} &
+  \multicolumn{1}{c|}{12.82} &
+  \multicolumn{1}{c|}{4.38} &
+  \multicolumn{1}{c|}{3.32} \\ \hline
+\multicolumn{1}{|c|}{} &
+  \multicolumn{1}{c|}{CBF} &
+  \multicolumn{1}{c|}{16.86} &
+  \multicolumn{1}{c|}{17.79} &
+  \multicolumn{1}{c|}{2.17} &
+  \multicolumn{1}{c|}{2.55} &
+  \multicolumn{1}{c|}{4.79} &
+  \multicolumn{1}{c|}{23.95} &
+  \multicolumn{1}{c|}{18.63} &
+  \multicolumn{1}{c|}{18.63} &
+  \multicolumn{1}{c|}{31.06} &
+  \multicolumn{1}{c|}{20.91} &
+  \multicolumn{1}{c|}{1.11} &
+  \multicolumn{1}{c|}{5.56} &
+  \multicolumn{1}{c|}{3.01} &
+  \multicolumn{1}{c|}{0.85} &
+  \multicolumn{1}{c|}{8.48} &
+  \multicolumn{1}{c|}{3.94} &
+  \multicolumn{1}{c|}{7.98} &
+  \multicolumn{1}{c|}{5.65} &
+  \multicolumn{1}{c|}{1.85} &
+  \multicolumn{1}{c|}{1.54} \\ \cline{2-22} 
+\multicolumn{1}{|c|}{} &
+  \multicolumn{1}{c|}{BPRMF} &
+  \multicolumn{1}{c|}{20.98} &
+  \multicolumn{1}{c|}{22.88} &
+  \multicolumn{1}{c|}{2.13} &
+  \multicolumn{1}{c|}{2.55} &
+  \multicolumn{1}{c|}{7.19} &
+  \multicolumn{1}{c|}{35.94} &
+  \multicolumn{1}{c|}{24.68} &
+  \multicolumn{1}{c|}{5.03} &
+  \multicolumn{1}{c|}{50.26} &
+  \multicolumn{1}{c|}{29.30} &
+  \multicolumn{1}{c|}{0.85} &
+  \multicolumn{1}{c|}{4.27} &
+  \multicolumn{1}{c|}{2.65} &
+  \multicolumn{1}{c|}{0.75} &
+  \multicolumn{1}{c|}{7.48} &
+  \multicolumn{1}{c|}{3.68} &
+  \multicolumn{1}{c|}{11.98} &
+  \multicolumn{1}{c|}{9.14} &
+  \multicolumn{1}{c|}{1.42} &
+  \multicolumn{1}{c|}{1.36} \\ \cline{2-22} 
+\multicolumn{1}{|c|}{} &
+  \multicolumn{1}{c|}{DeepFM} &
+  \multicolumn{1}{c|}{28.09} &
+  \multicolumn{1}{c|}{30.09} &
+  \multicolumn{1}{c|}{3.24} &
+  \multicolumn{1}{c|}{3.83} &
+  \multicolumn{1}{c|}{9.28} &
+  \multicolumn{1}{c|}{46.40} &
+  \multicolumn{1}{c|}{32.62} &
+  \multicolumn{1}{c|}{6.14} &
+  \multicolumn{1}{c|}{61.38} &
+  \multicolumn{1}{c|}{37.47} &
+  \multicolumn{1}{c|}{1.25} &
+  \multicolumn{1}{c|}{6.27} &
+  \multicolumn{1}{c|}{3.98} &
+  \multicolumn{1}{c|}{1.08} &
+  \multicolumn{1}{c|}{10.83} &
+  \multicolumn{1}{c|}{5.44} &
+  \multicolumn{1}{c|}{15.47} &
+  \multicolumn{1}{c|}{11.16} &
+  \multicolumn{1}{c|}{2.09} &
+  \multicolumn{1}{c|}{1.97} \\ \cline{2-22} 
+\multicolumn{1}{|c|}{} &
+  \multicolumn{1}{c|}{UPGPR} &
+  \multicolumn{1}{c|}{29.09} &
+  \multicolumn{1}{c|}{29.42} &
+  \multicolumn{1}{c|}{6.78} &
+  \multicolumn{1}{c|}{7.48} &
+  \multicolumn{1}{c|}{7.84} &
+  \multicolumn{1}{c|}{39.21} &
+  \multicolumn{1}{c|}{31.63} &
+  \multicolumn{1}{c|}{4.15} &
+  \multicolumn{1}{c|}{41.49} &
+  \multicolumn{1}{c|}{32.40} &
+  \multicolumn{1}{c|}{2.42} &
+  \multicolumn{1}{c|}{12.12} &
+  \multicolumn{1}{c|}{8.10} &
+  \multicolumn{1}{c|}{1.74} &
+  \multicolumn{1}{c|}{17.36} &
+  \multicolumn{1}{c|}{9.80} &
+  \multicolumn{1}{c|}{13.07} &
+  \multicolumn{1}{c|}{7.54} &
+  \multicolumn{1}{c|}{4.04} &
+  \multicolumn{1}{c|}{3.16} \\ \cline{2-22} 
+\multicolumn{1}{|c|}{\multirow{-5}{*}{\begin{tabular}[c]{@{}c@{}}V3\\ (Statistical\\ imputation)\end{tabular}}} &
+  \multicolumn{1}{c|}{KGAT} &
+  \multicolumn{1}{c|}{37.47} &
+  \multicolumn{1}{c|}{39.41} &
+  \multicolumn{1}{c|}{8.53} &
+  \multicolumn{1}{c|}{9.23} &
+  \multicolumn{1}{c|}{11.29} &
+  \multicolumn{1}{c|}{56.47} &
+  \multicolumn{1}{c|}{42.19} &
+  \multicolumn{1}{c|}{7.09} &
+  \multicolumn{1}{c|}{70.88} &
+  \multicolumn{1}{c|}{46.87} &
+  \multicolumn{1}{c|}{2.82} &
+  \multicolumn{1}{c|}{14.11} &
+  \multicolumn{1}{c|}{9.91} &
+  \multicolumn{1}{c|}{1.94} &
+  \multicolumn{1}{c|}{19.38} &
+  \multicolumn{1}{c|}{11.61} &
+  \multicolumn{1}{c|}{18.82} &
+  \multicolumn{1}{c|}{12.89} &
+  \multicolumn{1}{c|}{4.70} &
+  \multicolumn{1}{c|}{3.52} \\ \hline
+\multicolumn{1}{|c|}{} &
+  \multicolumn{1}{c|}{CBF} &
+  \multicolumn{1}{c|}{17.44} &
+  \multicolumn{1}{c|}{18.39} &
+  \multicolumn{1}{c|}{2.19} &
+  \multicolumn{1}{c|}{2.59} &
+  \multicolumn{1}{c|}{4.98} &
+  \multicolumn{1}{c|}{24.92} &
+  \multicolumn{1}{c|}{19.30} &
+  \multicolumn{1}{c|}{3.21} &
+  \multicolumn{1}{c|}{32.14} &
+  \multicolumn{1}{c|}{21.62} &
+  \multicolumn{1}{c|}{1.13} &
+  \multicolumn{1}{c|}{5.67} &
+  \multicolumn{1}{c|}{3.05} &
+  \multicolumn{1}{c|}{0.87} &
+  \multicolumn{1}{c|}{8.66} &
+  \multicolumn{1}{c|}{4.01} &
+  \multicolumn{1}{c|}{8.31} &
+  \multicolumn{1}{c|}{5.84} &
+  \multicolumn{1}{c|}{1.89} &
+  \multicolumn{1}{c|}{1.58} \\ \cline{2-22} 
+\multicolumn{1}{|c|}{} &
+  \multicolumn{1}{c|}{BPRMF} &
+  \multicolumn{1}{c|}{20.98} &
+  \multicolumn{1}{c|}{22.88} &
+  \multicolumn{1}{c|}{2.13} &
+  \multicolumn{1}{c|}{2.55} &
+  \multicolumn{1}{c|}{7.19} &
+  \multicolumn{1}{c|}{35.94} &
+  \multicolumn{1}{c|}{24.68} &
+  \multicolumn{1}{c|}{5.03} &
+  \multicolumn{1}{c|}{50.26} &
+  \multicolumn{1}{c|}{29.30} &
+  \multicolumn{1}{c|}{0.85} &
+  \multicolumn{1}{c|}{4.27} &
+  \multicolumn{1}{c|}{2.65} &
+  \multicolumn{1}{c|}{0.75} &
+  \multicolumn{1}{c|}{7.48} &
+  \multicolumn{1}{c|}{3.68} &
+  \multicolumn{1}{c|}{11.98} &
+  \multicolumn{1}{c|}{9.14} &
+  \multicolumn{1}{c|}{1.42} &
+  \multicolumn{1}{c|}{1.36} \\ \cline{2-22} 
+\multicolumn{1}{|c|}{} &
+  \multicolumn{1}{c|}{DeepFM} &
+  \multicolumn{1}{c|}{28.88} &
+  \multicolumn{1}{c|}{30.98} &
+  \multicolumn{1}{c|}{3.04} &
+  \multicolumn{1}{c|}{3.66} &
+  \multicolumn{1}{c|}{9.54} &
+  \multicolumn{1}{c|}{47.68} &
+  \multicolumn{1}{c|}{33.54} &
+  \multicolumn{1}{c|}{6.35} &
+  \multicolumn{1}{c|}{63.51} &
+  \multicolumn{1}{c|}{38.65} &
+  \multicolumn{1}{c|}{1.26} &
+  \multicolumn{1}{c|}{6.31} &
+  \multicolumn{1}{c|}{3.84} &
+  \multicolumn{1}{c|}{1.11} &
+  \multicolumn{1}{c|}{11.11} &
+  \multicolumn{1}{c|}{5.38} &
+  \multicolumn{1}{c|}{15.89} &
+  \multicolumn{1}{c|}{11.55} &
+  \multicolumn{1}{c|}{2.10} &
+  \multicolumn{1}{c|}{2.02} \\ \cline{2-22} 
+\multicolumn{1}{|c|}{} &
+  \multicolumn{1}{c|}{UPGPR} &
+  \multicolumn{1}{c|}{29.96} &
+  \multicolumn{1}{c|}{30.36} &
+  \multicolumn{1}{c|}{6.70} &
+  \multicolumn{1}{c|}{7.42} &
+  \multicolumn{1}{c|}{8.14} &
+  \multicolumn{1}{c|}{40.72} &
+  \multicolumn{1}{c|}{32.66} &
+  \multicolumn{1}{c|}{4.35} &
+  \multicolumn{1}{c|}{43.51} &
+  \multicolumn{1}{c|}{33.59} &
+  \multicolumn{1}{c|}{2.46} &
+  \multicolumn{1}{c|}{12.32} &
+  \multicolumn{1}{c|}{8.09} &
+  \multicolumn{1}{c|}{1.78} &
+  \multicolumn{1}{c|}{17.78} &
+  \multicolumn{1}{c|}{9.85} &
+  \multicolumn{1}{c|}{13.57} &
+  \multicolumn{1}{c|}{7.91} &
+  \multicolumn{1}{c|}{4.11} &
+  \multicolumn{1}{c|}{3.23} \\ \cline{2-22} 
+\multicolumn{1}{|c|}{\multirow{-5}{*}{\begin{tabular}[c]{@{}c@{}}V4\\ (ML based\\ imputation)\end{tabular}}} &
+  \multicolumn{1}{c|}{KGAT} &
+  \multicolumn{1}{c|}{\underline{38.14}} &
+  \multicolumn{1}{c|}{\underline{40.07}} &
+  \multicolumn{1}{c|}{\underline{9.15}} &
+  \multicolumn{1}{c|}{\underline{9.88}} &
+  \multicolumn{1}{c|}{\underline{11.41}} &
+  \multicolumn{1}{c|}{\underline{57.06}} &
+  \multicolumn{1}{c|}{\underline{42.84}} &
+  \multicolumn{1}{c|}{\underline{7.15}} &
+  \multicolumn{1}{c|}{\underline{71.54}} &
+  \multicolumn{1}{c|}{\underline{47.52}} &
+  \multicolumn{1}{c|}{\underline{2.90}} &
+  \multicolumn{1}{c|}{\underline{14.49}} &
+  \multicolumn{1}{c|}{\underline{10.47}} &
+  \multicolumn{1}{c|}{\underline{2.00}} &
+  \multicolumn{1}{c|}{\underline{20.01}} &
+  \multicolumn{1}{c|}{\underline{12.25}} &
+  \multicolumn{1}{c|}{\underline{19.02}} &
+  \multicolumn{1}{c|}{\underline{13.01}} &
+  \multicolumn{1}{c|}{\underline{4.83}} &
+  \multicolumn{1}{c|}{\underline{3.64}} \\ \hline
+\multicolumn{1}{|c|}{} &
+  \multicolumn{1}{c|}{CBF} &
+  \multicolumn{1}{c|}{17.32} &
+  \multicolumn{1}{c|}{18.28} &
+  \multicolumn{1}{c|}{2.11} &
+  \multicolumn{1}{c|}{2.49} &
+  \multicolumn{1}{c|}{4.97} &
+  \multicolumn{1}{c|}{24.84} &
+  \multicolumn{1}{c|}{19.19} &
+  \multicolumn{1}{c|}{3.21} &
+  \multicolumn{1}{c|}{32.12} &
+  \multicolumn{1}{c|}{21.53} &
+  \multicolumn{1}{c|}{1.13} &
+  \multicolumn{1}{c|}{5.65} &
+  \multicolumn{1}{c|}{2.98} &
+  \multicolumn{1}{c|}{0.85} &
+  \multicolumn{1}{c|}{8.54} &
+  \multicolumn{1}{c|}{3.91} &
+  \multicolumn{1}{c|}{8.28} &
+  \multicolumn{1}{c|}{5.84} &
+  \multicolumn{1}{c|}{1.88} &
+  \multicolumn{1}{c|}{1.55} \\ \cline{2-22} 
+\multicolumn{1}{|c|}{} &
+  \multicolumn{1}{c|}{BPRMF} &
+  \multicolumn{1}{c|}{20.98} &
+  \multicolumn{1}{c|}{22.88} &
+  \multicolumn{1}{c|}{2.13} &
+  \multicolumn{1}{c|}{2.55} &
+  \multicolumn{1}{c|}{7.19} &
+  \multicolumn{1}{c|}{35.94} &
+  \multicolumn{1}{c|}{24.68} &
+  \multicolumn{1}{c|}{5.03} &
+  \multicolumn{1}{c|}{50.26} &
+  \multicolumn{1}{c|}{29.30} &
+  \multicolumn{1}{c|}{0.85} &
+  \multicolumn{1}{c|}{4.27} &
+  \multicolumn{1}{c|}{2.65} &
+  \multicolumn{1}{c|}{0.75} &
+  \multicolumn{1}{c|}{7.48} &
+  \multicolumn{1}{c|}{3.68} &
+  \multicolumn{1}{c|}{11.98} &
+  \multicolumn{1}{c|}{9.14} &
+  \multicolumn{1}{c|}{1.42} &
+  \multicolumn{1}{c|}{1.36} \\ \cline{2-22} 
+\multicolumn{1}{|c|}{} &
+  \multicolumn{1}{c|}{DeepFM} &
+  \multicolumn{1}{c|}{27.22} &
+  \multicolumn{1}{c|}{29.32} &
+  \multicolumn{1}{c|}{2.81} &
+  \multicolumn{1}{c|}{3.37} &
+  \multicolumn{1}{c|}{9.05} &
+  \multicolumn{1}{c|}{45.27} &
+  \multicolumn{1}{c|}{31.70} &
+  \multicolumn{1}{c|}{6.10} &
+  \multicolumn{1}{c|}{60.98} &
+  \multicolumn{1}{c|}{36.78} &
+  \multicolumn{1}{c|}{1.14} &
+  \multicolumn{1}{c|}{5.70} &
+  \multicolumn{1}{c|}{3.52} &
+  \multicolumn{1}{c|}{1.00} &
+  \multicolumn{1}{c|}{10.00} &
+  \multicolumn{1}{c|}{4.90} &
+  \multicolumn{1}{c|}{15.09} &
+  \multicolumn{1}{c|}{11.09} &
+  \multicolumn{1}{c|}{1.90} &
+  \multicolumn{1}{c|}{1.82} \\ \cline{2-22} 
+\multicolumn{1}{|c|}{} &
+  \multicolumn{1}{c|}{UPRPG} &
+  \multicolumn{1}{c|}{29.63} &
+  \multicolumn{1}{c|}{29.98} &
+  \multicolumn{1}{c|}{6.80} &
+  \multicolumn{1}{c|}{7.48} &
+  \multicolumn{1}{c|}{8.06} &
+  \multicolumn{1}{c|}{40.27} &
+  \multicolumn{1}{c|}{32.31} &
+  \multicolumn{1}{c|}{4.27} &
+  \multicolumn{1}{c|}{42.68} &
+  \multicolumn{1}{c|}{33.11} &
+  \multicolumn{1}{c|}{2.46} &
+  \multicolumn{1}{c|}{12.29} &
+  \multicolumn{1}{c|}{8.16} &
+  \multicolumn{1}{c|}{1.75} &
+  \multicolumn{1}{c|}{17.46} &
+  \multicolumn{1}{c|}{9.82} &
+  \multicolumn{1}{c|}{13.42} &
+  \multicolumn{1}{c|}{7.76} &
+  \multicolumn{1}{c|}{4.10} &
+  \multicolumn{1}{c|}{3.17} \\ \cline{2-22} 
+\multicolumn{1}{|c|}{\multirow{-5}{*}{\begin{tabular}[c]{@{}c@{}}V5\\ (HetGNN\\ imputation)\end{tabular}}} &
+  \multicolumn{1}{c|}{\textbf{HetGNN-KGAT}} &
+  \multicolumn{1}{c|}{\textbf{39.94}} &
+  \multicolumn{1}{c|}{\textbf{41.83}} &
+  \multicolumn{1}{c|}{\textbf{9.52}} &
+  \multicolumn{1}{c|}{\textbf{10.31}} &
+  \multicolumn{1}{c|}{\textbf{11.79}} &
+  \multicolumn{1}{c|}{\textbf{58.95}} &
+  \multicolumn{1}{c|}{\textbf{44.67}} &
+  \multicolumn{1}{c|}{\textbf{7.30}} &
+  \multicolumn{1}{c|}{\textbf{72.99}} &
+  \multicolumn{1}{c|}{\textbf{49.23}} &
+  \multicolumn{1}{c|}{\textbf{3.09}} &
+  \multicolumn{1}{c|}{\textbf{15.44}} &
+  \multicolumn{1}{c|}{\textbf{10.98}} &
+  \multicolumn{1}{c|}{\textbf{2.15}} &
+  \multicolumn{1}{c|}{\textbf{21.46}} &
+  \multicolumn{1}{c|}{\textbf{12.92}} &
+  \multicolumn{1}{c|}{\textbf{19.65}} &
+  \multicolumn{1}{c|}{\textbf{13.27}} &
+  \multicolumn{1}{c|}{\textbf{5.15}} &
+  \multicolumn{1}{c|}{\textbf{3.90}} \\ \hline
+\end{tabular}
+}    
+\end{sidewaystable}
+
+Indirect results demonstrate the effectiveness of recommendation models on imputed data versions, with HetGNN-KGAT standing out on data V5. Specifically, in the simulated scenario (-100neg), HetGNN-KGAT achieves MAP values of 39.94\% (Top5) and 41.83\% (Top10), outperforming UPGPR (29.63\% and 29.98\%) by approximately 10-12\%, affirming KGAT's role in leveraging information graphs. In the real-world scenario (-Real), HetGNN-KGAT achieves MAP of 9.52\% (Top5) and 10.31\% (Top10), surpassing UPGPR (6.80\% and 7.48\%) by about 2.7-2.8\%, indicating promising effectiveness in real environments. For Relevance, HetGNN-KGAT on V5 records Precision@5-100neg at 11.79\%, Recall@5-100neg at 58.95\%, and NDCG@10-Real at 12.92\%, all higher than UPGPR (8.06\%, 40.27\%, and 9.82\%), reflecting better ranking and coverage due to KGAT's attention mechanism on graphs.
+
+This trend holds across other data versions (V2, V3, V4), with KGAT consistently outperforming UPGPR. On V4 (MLI), KGAT achieves MAP of 38.14\% (Top5-100neg) and 40.07\% (Top10-100neg), exceeding UPGPR (29.96\% and 30.36\%) by 10-11\%, while on V2 (LD) and V3 (SI), KGAT's performance is also notably superior. This superiority stems from HetGNN's ability to enrich sparse data through heterogeneous graph representations, combined with KGAT's effective utilization of graph relationships to improve recommendations.
+
+Initially, UPGPR was proposed due to the potential of reinforcement learning in modeling sequential recommendation processes, particularly its ability to provide explanatory paths, aligning with personalization goals in MOOCs. Experiments show UPGPR achieving encouraging performance, especially on V5 with MAP of 29.63\% (Top5-100neg) and F1-score of 4.10\% (Top5-Real), ranking second to HetGNN-KGAT. However, UPGPR's performance lags behind KGAT due to its high computational complexity and strong dependence on path design, which requires rich training data and meticulous hyperparameter optimization—conditions not fully met currently. In contrast, KGAT, with its attention mechanism on graphs, better exploits the complex relationships in MOOCCubeX, leading to higher performance (MAP 39.94\% and F1-score 5.15\% on V5). The decision to adopt HetGNN-KGAT is based on objective experimental results, though UPGPR remains a valuable benchmark, demonstrating the potential of reinforcement learning for future research with improved resources and data.
+
+Overall performance values remain relatively low (below 50\% for MAP and below 75\% for Recall), reflecting the challenges posed by MOOCCubeX's complex and sparse data. Compared to prior studies, where models like KGAT or DeepFM typically achieve MAP of 30-40\% on smaller datasets \cite{wang2019kgat, guo2017deepfm}, these results indicate that HetGNN-KGAT has significantly improved handling of multidimensional data, especially when combined with HetGNN imputation. Further potential exists, with improvements such as optimizing KGAT hyperparameters or expanding training data.
+
+\subsubsection{Overall Model Performance}
+
+This section evaluates the overall performance of recommendation models using the F1-score metric as defined in the previous content of this section \ref{sec:experiments}. The results are presented in the final column of Table \ref{tab:indirect_dataquality_and_performance_results}.
+
+The HetGNN-KGAT model on data V5 (HetGNN Imputation) achieves the highest performance with F1-scores of 19.65\% (Top5-100neg), 13.27\% (Top10-100neg), 5.15\% (Top5-Real), and 3.90\% (Top10-Real), outperforming UPGPR (13.42\%, 7.76\%, 4.10\%, and 3.17\%) by approximately 6.2\%, 5.5\%, 1.05\%, and 0.73\%. Across other versions, such as V4 (MLI), HetGNN-KGAT achieves 19.02\% (Top5-100neg) and 13.01\% (Top10-100neg), surpassing UPGPR (13.57\% and 7.91\%) by 6.3-5.5\%, while on V2 (LD) and V3 (SI), HetGNN-KGAT's performance is also notably higher (e.g., 18.62\% vs. 13.36\% on V2 Top5-100neg).
+
+The superiority of HetGNN-KGAT on V5 highlights the effectiveness of HetGNN in providing high-quality data, combined with KGAT's attention mechanism to optimize both precision and coverage, thereby enhancing the F1-score. However, it should be noted that UPGPR, despite not being the final proposed method, still achieves significant performance (F1-score of 4.10\% on Top5-Real), reflecting the potential of reinforcement learning in modeling sequential recommendations. The decision to adopt HetGNN-KGAT over UPGPR stems from experimental results, where KGAT demonstrates more stable performance due to its graph exploitation capabilities, while UPGPR, despite its explanatory advantages, faces limitations due to high data training requirements and computational resources—a challenge not fully overcome within the scope of this thesis. The initial proposal of UPGPR in the outline was appropriate for exploring advanced methods, and UPGPR's second-place ranking reinforces the value of reinforcement learning, opening avenues for future research when conditions improve.
+
+The F1-score values remain relatively low (below 25\%), reflecting the challenge of balancing Precision and Recall on a sparse and complex dataset like MOOCCubeX. Compared to baseline methods, where F1-scores typically range from 10-20\% in simulated scenarios, these results indicate that HetGNN-KGAT has improved handling of multidimensional data compared to traditional approaches. Further potential exists, with enhancements such as tuning KGAT hyperparameters or integrating temporal factors.
+
+
+\section{Discussion}
+\label{sec:discussion}
+
+The proposed HetGNN-KGAT method combines HetGNN with KGAT to address recommendation challenges in MOOCs environments, using the MOOCCubeX dataset characterized by sparse and complex relational data. This approach is designed for MOOCs, where learner interactions are diverse (e.g., varying engagement levels, irregular participation patterns) and data sparsity is significant (e.g., 99.94\% missing rate for attributes like \textit{watch\_id}). HetGNN improves data quality by predicting missing links within the heterogeneous graph structure, capturing multi-relational data inherent in MOOCs. KGAT uses an attention mechanism to prioritize relevant relationships, supporting personalized recommendations that align with the diverse learning needs of MOOC learners. Consistent with the original KGAT framework \cite{wang2019kgat}, HetGNN-KGAT focuses on static relational structures rather than temporal dynamics, making it well-suited for modeling the complex, multi-relational nature of MOOCCubeX data. This design choice aligns with the need to handle sparse, heterogeneous data in MOOCs, providing effective recommendations despite incomplete datasets.
+
+In experimental evaluations Section \ref{sec:experiments} , HetGNN-KGAT performs better than baseline models such as CBF, BPRMF, DeepFM, and UPGPR. On the V5 dataset, it achieves a Mean Average Precision (MAP) of 39.94\% (Top5-100neg) and an F1-score of 5.15\% (Top5-Real), exceeding UPGPR by 6-12\% across scenarios. The data was split using the leave-one-out strategy with interactions ordered temporally, reflecting the sequential nature of learner behaviors in MOOCs. The improved performance of HetGNN-KGAT is due to HetGNN’s ability to preprocess sparse data by modeling the heterogeneous graph structure, capturing diverse interactions such as learner enrollments and course prerequisites. KGAT complements this by weighting relevant relationships, aligning recommendations with learner preferences in the complex, multi-relational MOOC environment. Compared to UPGPR, which relies on computationally intensive reinforcement learning and struggles with sparse datasets, HetGNN-KGAT handles MOOCCubeX’s sparsity more effectively, resulting in higher MAP and NDCG scores. This alignment with MOOC characteristics, such as sparse data and diverse learner interactions, explains the method’s performance, avoiding the oversimplification of focusing solely on performance metrics without context.
+
+Despite these strengths, HetGNN-KGAT’s performance is constrained, with an F1-score below 25\%, primarily due to deficiencies in the MOOCCubeX dataset. High missing rates for critical attributes (e.g., 73.12\% for \textit{course\_field}, 58.99\% for \textit{concept\_id}) limit the model’s ability to construct comprehensive learner and course profiles. Additionally, the absence of demographic data (e.g., learner age, region, or educational background) restricts the model’s capacity to tailor recommendations to diverse learner groups, a key aspect of personalization in MOOCs with global participation and varied educational goals \cite{jordan2014initial_trend_mooc}. While MOOCCubeX includes temporal data such as enrollment timestamps, video watching times, and assignment submission times, the HetGNN-KGAT framework, consistent with the original KGAT design, is optimized for static relational structures rather than sequential patterns, as heterogeneous graphs are not designed to model temporal dynamics like temporal knowledge graphs. This focus on static relationships is appropriate for the current scope, as it aligns with the method’s goal of addressing sparsity and relational complexity. However, it suggests opportunities for future enhancement. Computational constraints also limit hyperparameter optimization for deep architectures like HetGNN and KGAT, resulting in suboptimal convergence.
+
+To improve performance, future work should focus on the following directions:
+\begin{itemize} 
+\item Model Optimization: Conduct thorough hyperparameter optimization, such as adjusting the embedding size in HetGNN and the number of attention layers in KGAT, to enhance recommendation accuracy. Additionally, integrating advanced representation learning techniques, such as graph attention mechanisms, contrastive learning, or foundation Graph Neural Networks (GNNs), could improve the model’s ability to exploit semantic information from the knowledge graph.
+
+\item Data Enrichment and Augmentation: Address missing data by developing advanced imputation techniques, such as generative models or contrastive learning, to handle attributes like \textit{course\_field} and \textit{concept\_id}. Collecting additional data, including demographic information (e.g., learner age, region, educational background) and contextual data (e.g., learning goals, personal interests, detailed learning history), would enrich learner profiles and improve personalization. Furthermore, gathering real-time behavioral data, such as video pause durations, forum interactions, or assignment feedback, could provide deeper insights into learner engagement. Applying data augmentation techniques could expand the training dataset, improving coverage and mitigating the impact of uneven data distribution.
+
+\item Incorporating Temporal Data: While the current HetGNN-KGAT design is effective for static relational data, incorporating temporal data (e.g., enrollment timestamps, video watching sequences) through hybrid models combining heterogeneous graphs with temporal graph neural networks could enhance personalization by capturing dynamic learner behaviors. For instance, modeling sequential interactions could emphasize recent activities, aligning recommendations with evolving learner interests.
+
+\item Expanding Application Scope: Test the model on other online learning platforms beyond XuetangX, such as Coursera or edX, to evaluate its adaptability across diverse educational environments. Developing compatibility with various Learning Management Systems (LMS) like Moodle, Canvas, or Blackboard would enhance the model’s practical applicability in different educational settings.
+
+\item Broader Research Directions: Explore multi-objective recommendation systems that balance accuracy, novelty, and diversity in recommendations to better meet learner needs. Additionally, investigate federated learning approaches to protect learner data privacy in multi-institutional MOOC environments, ensuring robust recommendations while adhering to privacy regulations.
+\end{itemize}
+
+These improvements are critical, as the current lack of demographic and contextual data, combined with high missing rates, directly contributes to the low F1-score and limits recommendation accuracy in real-world MOOC settings. By addressing these data-related challenges and optimizing the model, HetGNN-KGAT could achieve improved performance and broader applicability. Extending the method to other platforms and exploring advanced techniques like federated learning would further validate its generalizability and effectiveness in diverse educational contexts.
+
+\section{Conclusion}
+\label{sec:conclusion}
+This study presents HetGNN-KGAT, a framework that integrates HetGNN for link prediction and KGAT for course recommendation in MOOC platforms. The approach addresses data sparsity by using link prediction to impute missing values, thereby improving input data quality for recommendation tasks.
+
+Experiments were conducted on the MOOCCubeX dataset across simulated and real-world scenarios, comparing HetGNN-KGAT with baseline methods (CBF, BPRMF, DeepFM, UPGPR) and imputation techniques (Listwise Deletion, Statistical Imputation, ML-based Imputation). Results show that HetGNN-KGAT achieves up to 8\% improvement in MAP, 4\% in F1-score, and 10\% in Normalized Discounted Cumulative Gain (NDCG) in real-world scenarios, and up to 24\% in MAP, 11\% in F1-score, and 28\% in NDCG in simulated scenarios. On the V5 dataset, it records a MAP of 39.94\% and an F1-score of 5.15\%.
+
+The study demonstrates the effectiveness of graph-based imputation and relational modeling in managing sparse data, offering a practical approach for adaptive educational systems. However, performance is constrained by data distribution challenges and computational limitations. Future research could enhance the framework by optimizing model parameters, incorporating temporal dynamics, and validating its applicability on additional datasets to support broader adoption in personalized learning environments.
+
+\section*{Acknowledgment}
+This research was supported by The VNUHCM-University of Information Technology's Scientific Research Support Fund.
+
+
+\bibliographystyle{IEEEtran}
+\bibliography{ref}
+
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{Authors/ThuNTA.jpg}}]{Thu Nguyen} holds a Master of Science degree in Computer Science from the University of Information Technology, Vietnam National University, Ho Chi Minh City (VNU-HCM). She currently serves as a lecturer in the Faculty of Information Science and Engineering at the University of Information Technology. Her primary research interests encompass Data Science, Artificial Intelligence, and Machine Learning. She has actively contributed to various research projects and has authored publications in reputable international conferences and journals, reflecting her dedication to advancing knowledge in these domains. She can be contacted via email at thunta@uit.edu.vn or n240204@grad.uit.edu.vn.
 \end{IEEEbiography}
 
-\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{a2.png}}]{Second B. Author} was born in Greenwich Village, New York, NY, USA in 
-1977. He received the B.S. and M.S. degrees in aerospace engineering from 
-the University of Virginia, Charlottesville, in 2001 and the Ph.D. degree in 
-mechanical engineering from Drexel University, Philadelphia, PA, in 2008.
-
-From 2001 to 2004, he was a Research Assistant with the Princeton Plasma 
-Physics Laboratory. Since 2009, he has been an Assistant Professor with the 
-Mechanical Engineering Department, Texas A{\&}M University, College Station. 
-He is the author of three books, more than 150 articles, and more than 70 
-inventions. His research interests include high-pressure and high-density 
-nonthermal plasma discharge processes and applications, microscale plasma 
-discharges, discharges in liquids, spectroscopic diagnostics, plasma 
-propulsion, and innovation plasma applications. He is an Associate Editor of 
-the journal \emph{Earth, Moon, Planets}, and holds two patents. 
-
-Dr. Author was a recipient of the International Association of Geomagnetism 
-and Aeronomy Young Scientist Award for Excellence in 2008, and the IEEE 
-Electromagnetic Compatibility Society Best Symposium Paper Award in 2011. 
+\begin{IEEEbiography}
+[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{Authors/DatDT.jpg}}]{Dat Do} is a student majoring in Information Technology at the University of Information Technology, Vietnam National University, Ho Chi Minh City. With a passion for technology, he is particularly interested in the field of machine learning and its practical applications. He continuously strives to learn and research to develop effective technological solutions, contributing to solving real-world problems and advancing progress in this field. You can reach him at 21520694@gm.uit.edu.vn
 \end{IEEEbiography}
 
-\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{a3.png}}]{Third C. Author, Jr.} (M'87) received the B.S. degree in mechanical 
-engineering from National Chung Cheng University, Chiayi, Taiwan, in 2004 
-and the M.S. degree in mechanical engineering from National Tsing Hua 
-University, Hsinchu, Taiwan, in 2006. He is currently pursuing the Ph.D. 
-degree in mechanical engineering at Texas A{\&}M University, College 
-Station, TX, USA.
+\begin{IEEEbiography}
+[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{Authors/HuongVT.jpg}}]{Huong Vi} is currently a student in the Faculty of Information Science and Technology at the University of Information Technology, Vietnam National University, Ho Chi Minh City (VNU-HCM). She is passionate about exploring innovative solutions in information technology and aspires to contribute to the tech industry. You can reach her at 21522132@gm.uit.edu.vn
+\end{IEEEbiography}
 
-From 2008 to 2009, he was a Research Assistant with the Institute of 
-Physics, Academia Sinica, Tapei, Taiwan. His research interest includes the 
-development of surface processing and biological/medical treatment 
-techniques using nonthermal atmospheric pressure plasmas, fundamental study 
-of plasma sources, and fabrication of micro- or nanostructured surfaces. 
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{Authors/KhoaVT.jpg}}]{Khoa Tan VO}, a Master of Science in Information Technology from the University of Information Technology, Vietnam National University, Ho Chi Minh City (VNU-HCM), is a lecturer of the Faculty of Information Science and Engineering at VNU-HCM. Specializing in Software Engineering and Blockchain Technology, he actively contributes to various research projects and has a robust portfolio of publications in prestigious international conferences and journals. His dedication to advancing technology and education underscores his commitment to excellence in his field. You can reach him at khoavt@uit.edu.vn or n240203@grad.uit.edu.vn.
+\end{IEEEbiography}
 
-Mr. Author's awards and honors include the Frew Fellowship (Australian 
-Academy of Science), the I. I. Rabi Prize (APS), the European Frequency and 
-Time Forum Award, the Carl Zeiss Research Award, the William F. Meggers 
-Award and the Adolph Lomb Medal (OSA).
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{Authors/ThuyTT.jpg}}]{Thu-Thuy Ta} holds a Master of Science in Computer Science from the University of Information Technology, Vietnam National University, Ho Chi Minh City (VNU-HCM). She is a lecturer of the Faculty of Information Science and Engineering at VNU-HCM. Her research focuses on Data Science and Machine Learning, areas in which she has contributed to several projects and published papers in international conferences and journals. Her work reflects a commitment to advancing the fields of data science and machine learning. You can reach her at thuyta@uit.edu.vn.
+\end{IEEEbiography}
+
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{Authors/ThyNTM.jpg}}]{Mong-Thy Nguyen Thi} holds a Master of Arts in Teaching English as a Second Language (TESL) from Benedictine University, USA. She is an educator at the Center for Foreign Languages, University of Information Technology, Vietnam National University, Ho Chi Minh City (VNU-HCM). Her research focuses on English Language Teaching (ELT) Methodology. Passionate about improving language education, she contributes significantly to advancing ELT practices at her institution. You can reach her at thyntm@uit.edu.vn.
+\end{IEEEbiography}
+
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{Authors/PhucNQ.jpg}}]{Phuc Nguyen} received his Master’s degree in Computer Science from the University of Information Technology, a member institution of Vietnam National University, Ho Chi Minh City (VNU-HCM). He is currently serving as a lecturer in the Faculty of Information Systems at the University of Economics and Law, VNU-HCM. His research interests focus on artificial intelligence, business data analytics, and information security. He can be reached via email at phucnq@uel.edu.vn or phucnq.ncs2024@stu.ptit.edu.vn.
+\end{IEEEbiography}
+
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{Authors/TriNH.jpg}}]{Hong-Tri Nguyen} is a postdoctoral researcher at Aalto University. Before Aalto, he received a B.S. degree in computer science from the University of Information Technology -- Vietnam National University, Vietnam, in 2015, and an M.S. degree in computer science from the University of Pisa, Italy, in 2018. Also, he obtained a Ph.D at the University of Oulu in 2023. His research interests include distributed systems, blockchain technology, and information security.
+\end{IEEEbiography}
+
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{Authors/AnhNHT.jpg}}]{Tu-Anh Nguyen-Hoang}, Ph.D., is an Associate Professor at the University of Information Technology, Vietnam National University, Ho Chi Minh City (VNU-HCM). She earned her Ph.D. in the Mathematical Foundations of Computer Science and Computational Systems from the University of Science, VNU-HCM. Her research focuses on Data Mining, Soft Computing, and Machine Learning. Dr. Tu-Anh is actively involved in numerous research projects and has a prolific publication record in international conferences and journals. Her work significantly contributes to advancing these specialized fields. You can reach her at anhnht@uit.edu.vn.
 \end{IEEEbiography}
 
 \EOD
