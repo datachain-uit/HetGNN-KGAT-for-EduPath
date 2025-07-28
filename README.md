@@ -6,6 +6,8 @@
 
 This repository contains resources related to the paper titled **"HetGNN-KGAT: Enhancing Personalized Course Recommendation in MOOCs with Knowledge Graph Attention Networks"** and the associated EduPath system, a simulated MOOCs platform integrating personalized course recommendations for educational administrators.
 
+The website demonstration is available at the [link](https://drive.google.com/file/d/1HrBSYTLEmjdhFYRO_VKq9ohmjh6fDHR9/view?usp=sharing)
+
 ## Overview
 
 The paper proposes the **HetGNN-KGAT framework**, a novel approach to enhance personalized course recommendations in Massive Open Online Courses (MOOCs) by leveraging Heterogeneous Graph Neural Networks (HetGNN) and Knowledge Graph Attention Networks (KGAT). The framework addresses data sparsity and improves recommendation performance by integrating heterogeneous data and modeling complex relationships among learners, courses, and other entities in the MOOC ecosystem.
