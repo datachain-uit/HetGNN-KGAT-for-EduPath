@@ -157,10 +157,6 @@ EduPath is a simulated MOOCs platform designed to demonstrate the HetGNN-KGAT re
 2. Start the frontend (`npm run dev`)
 3. Access the web interface at `http://localhost:5173` to explore course/learner management, recommendations, and the dashboard
 
-### Compile the Paper
-
-- Use a LaTeX editor or the command line to compile `main.tex` in the `LaTex-paper` directory
-
 ### Experiment with Notebooks
 
 1. Download the raw data from the [MOOCCubeX dataset](https://github.com/THU-KEG/MOOCCubeX).
