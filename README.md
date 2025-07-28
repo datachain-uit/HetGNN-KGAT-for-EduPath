@@ -23,7 +23,6 @@ The repository includes the LaTeX source of the paper, source code, datasets, an
 ## Repository Structure
 
 ```
-|-- LaTex-paper/
 |-- src/
 |   |-- data/                # Datasets used in the paper (e.g., MOOCCubeX)
 |   |-- notebooks/           # Jupyter notebooks for preprocessing, imputation, training, and evaluation
@@ -37,16 +36,7 @@ The repository includes the LaTeX source of the paper, source code, datasets, an
 
 ## Contents
 
-### 1. LaTex-paper
-
-Contains the LaTeX source files for the IEEE Access paper.
-
-- **main.tex**: The main LaTeX file for the paper
-- **main.bib**: Bibliography file with references cited in the paper
-- **imgs/**: Directory containing figures used in the paper, such as the HetGNN-KGAT architecture and EduPath system screenshots
-- **Authors/**: Directory with author images (if applicable)
-
-### 2. src
+### 1. src
 
 - **data/**: Contains the MOOCCubeX dataset used for experiments, with details on entities (learners, courses, concepts, etc.) and attributes (e.g., course_field, user_course_num_comments)
 
@@ -59,7 +49,7 @@ Contains the LaTeX source files for the IEEE Access paper.
   - **backend/**: Built with Django and Django REST Framework, providing RESTful APIs for learner/course data, recommendations, and dashboard metrics
   - **frontend/**: Built with React and CoreUI, offering an intuitive interface for educational administrators to view learner/course details, recommendations, and analytics
 
-### 3. submission
+### 2. submission
 
 - **note.md**: Placeholder for submission and review-related notes (currently empty)
 
