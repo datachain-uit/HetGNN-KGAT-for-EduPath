@@ -66,7 +66,7 @@ Contains the LaTeX source files for the IEEE Access paper.
 ## Workflow Diagram
 
 The following diagram illustrates the workflow of the HetGNN-KGAT framework and EduPath system as described in the paper:
-![HetGNN-KGAT Framework](/LaTex-paper/imgs/framework_journal.png)
+![HetGNN-KGAT Framework](/src/framework_journal.png)
 
 The workflow includes:
 
