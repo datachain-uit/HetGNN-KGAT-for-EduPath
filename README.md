@@ -152,15 +152,15 @@ EduPath is a simulated MOOCs platform designed to demonstrate the HetGNN-KGAT re
 1. Download the raw data from the [MOOCCubeX dataset](https://github.com/THU-KEG/MOOCCubeX).
 
 2. Preprocess and clean the data:
-- Located in: notebooks/PreprocessingandCleaning/
+- Located in: `notebooks/PreprocessingandCleaning/`
 - Tasks include: data cleaning, translation to English, and merging of related datasets.
 
 3. Impute missing values:
-- Implemented in: notebooks/Imputation/
+- Implemented in: `notebooks/Imputation/`
 - Various imputation methods are applied to generate multiple completed versions of the dataset.
 
 4. Model experimentation:
-- Performed in: notebooks/Model/
+- Performed in: `notebooks/Model/`
 - Each imputed dataset version is evaluated on different recommendation models.
 
 <!-- ## Citation
