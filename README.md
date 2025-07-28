@@ -24,10 +24,6 @@ The repository includes the LaTeX source of the paper, source code, datasets, an
 
 ```
 |-- LaTex-paper/
-|   |-- Authors/             # Images of the authors
-|   |-- imgs/                # Images used in the paper
-|   |-- main.bib             # Bibliography file with references
-|   |-- main.tex             # Main LaTeX file for the paper
 |-- src/
 |   |-- data/                # Datasets used in the paper (e.g., MOOCCubeX)
 |   |-- notebooks/           # Jupyter notebooks for preprocessing, imputation, training, and evaluation
