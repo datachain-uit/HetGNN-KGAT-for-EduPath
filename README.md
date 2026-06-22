@@ -1,3 +1,6 @@
+**JOURNAL**: Thu Nguyen, Dat Do, Huong Vi, Khoa Tan VO, Thu-Thuy Ta, Phuc Nguyen, Hong-Tri Nguyen, Tu-Anh Nguyen-Hoang, "HetGNN-KGAT: Enhancing Personalized Course Recommendation in MOOCs with Knowledge Graph Attention Networks", IEEE Access, Volume: 13, Page(s): 192045 - 192068 (2025).
+**LINK**: https://ieeexplore.ieee.org/document/11236472/
+
 # HetGNN-KGAT For EduPath
 [![React](https://img.shields.io/badge/React-19.1.0-blue)](https://reactjs.org/)
 [![Django](https://img.shields.io/badge/Django-3.2.25-green)](https://www.djangoproject.com/)
